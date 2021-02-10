@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="ads_list_bg">#E4F7FC</color>
+    <color name="bg_dark">#000000</color>
+    <color name="bg_grey">#d0d0d0</color>
+    <color name="bg_grey_dark">#282828</color>
+    <color name="bg_grey_light">#F0F2F1</color>
+    <color name="bg_grey_mid">#808080</color>
+    <color name="bg_light">#ffffff</color>
+    <color name="bg_toast">#0096fd</color>
+    <color name="bg_transparent">#00000000</color>
+    <color name="bg_waseela_nav_theme">#ff0099cc</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="custom_showcase_bg">#b9002153</color>
+    <color name="reach_destination_green">#319C53</color>
+    <color name="green">#52a136</color>
+    <color name="secondary_text_material_dark">#f37328</color>
+    <color name="text_dark">#000000</color>
+    <color name="text_hint">#999999</color>
+    <color name="text_light">#ffffff</color>
+    <color name="text_message">#282828</color>
+    <color name="text_warning">#f83214</color>
+    <color name="text_web_link">#0099cc</color>
+    <color name="transparent">#00000000</color>
+    <color name="ux_black_30_transparent">#64000000</color>
+    <color name="ux_blue">#669fd5</color>
+    <color name="ux_blue1">#517FAA</color>
+    <color name="ux_blue2">#5990CC</color>
+    <color name="ux_blue_transparent">#99669fd5</color>
+    <color name="ux_dark_blue">#00355f</color>
+    <color name="ux_dark_blue_semi_transparent">#B300355f</color>
+    <color name="ux_line_blue">#73aae4</color>
+    <color name="ux_orange">#f37328</color>
+    <color name="ux_tabheader">#3970A5</color>
+    <color name="ux_white">#eaf2f3</color>
+
+    <!-- NEW COLORs-->
+    <color name="skyBlue">#73B1D6</color>
+    <color name="grey">#8F8F8F</color>
+    <color name="dark_blue_700">#567A90</color>
+    <color name="orange">#FEA549</color>
+    <color name="dark_blue_800">#1F678F</color>
+</resources>

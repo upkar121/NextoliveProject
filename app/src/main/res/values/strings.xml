@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">NextoliveProject</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="please_wait">Please wait…</string>
+    <string name="network_error">Network Error</string>
+    <string name="something_error">Oops! Something went wrong.</string>
+
+    <string name="search">Search</string>
+    <string name="advance_search">Advance Search</string>
+    <string name="store">Store</string>
+    <string name="resturant">Restaurant</string>
+    <string name="free_delivery">Free Delivery</string>
+    <string name="Sales">Sales</string>
+    <string name="Rates">Rates</string>
+    <string name="Submit">Submit</string>
+    <string name="food">Food</string>
+    <string name="Campaigns">Campaigns</string>
+    <string name="online_food_ordering">Online Food Ordering</string>
+    <string name="market">Market</string>
+    <string name="reservation">Reservation</string>
+    <string name="bank">Bank</string>
+    <string name="online_queue">Online Queue</string>
+    <string name="branch">Branches</string>
+    <string name="hotel">Hotel</string>
+    <string name="offers">Offers</string>
+    <string name="name">Nextolive</string>
+
+    <!--    Drawer-->
+    <string name="editProfile">EDIT PROFILE</string>
+    <string name="myOrders">MY ORDERS</string>
+    <string name="myCarts">MY CART</string>
+    <string name="wallet">WALLET</string>
+    <string name="notifications">NOTIFICATIONS</string>
+    <string name="myAddresses">My Address</string>
+    <string name="contactUs">CONTACT US</string>
+    <string name="logout">LOGOUT</string>
+
+    <string name="funFair">Fun Fair</string>
+    <string name="tickets">Tickets</string>
+    <string name="BankQueueOrder">Bank Queue Order</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="Gallery">Gallery</string>
+    <string name="Camera">Camera</string>
+    <string name="Select_profile_photo">Select profile photo</string>
+    <string name="Can_not_find_image_capture_program">Can not find image capture program</string>
+    <string name="Error_saving_image">Error in saving image</string>
+
+    <!--    Food Section-->
+    <string name="one_hour_delivery">Food 1 hr delivery</string>
+    <string name="no_contact_delivery">No-contact delivery available</string>
+    <string name="topPicks">Top Picks For You</string>
+    <string name="coupons">Coupons For You</string>
+    <string name="popularCuisines">Popular cuisines around you</string>
+    <string name="InTheSpotlight">In the Spotlight</string>
+    <string name="seeAll">SEE ALL</string>
+    <string name="explore">Explore sponsored partner brands</string>
+    <string name="popularBrands">Popular Brands</string>
+    <string name="bestInsafty">Best in Safety</string>
+</resources>

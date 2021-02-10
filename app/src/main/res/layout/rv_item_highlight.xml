@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/intro_two"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#3f51b5"/>
+    <TextView
+        android:id="@+id/tvHighlight"
+        android:text="200+ orders from Royal Cafe in Lucknow during
+        snacks time in the last week"
+        android:layout_width="200dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:src="@drawable/ic_arrow_forward"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+    <View
+        android:layout_width="1dp"
+        android:background="@color/grey"
+        android:layout_marginLeft="30dp"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>
