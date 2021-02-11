@@ -6,383 +6,117 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
-
-    <LinearLayout
+    tools:context=".views.MainViewActivity">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-     <include
-         layout="@layout/toolbar_layout"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"/>
-
-        <!--search work-->
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_blue_800"
+        android:orientation="horizontal">
         <LinearLayout
-            android:id="@+id/ll_main_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical"
-            android:padding="3dp"
-            android:visibility="gone">
-
-            <LinearLayout
-                android:id="@+id/ll_Search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:background="@drawable/get_otp_border_white">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".6"
-                        android:focusableInTouchMode="true"
-                        android:visibility="visible">
-
-                        <EditText
-                            android:id="@+id/et_searchtext"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@null"
-                            android:gravity="center_vertical"
-                            android:hint="@string/search"
-                            android:imeOptions="actionDone"
-                            android:longClickable="false"
-
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:textColor="@color/dark_blue_800"
-                            android:textColorHint="@color/grey"
-                            android:textSize="12dp" />
-                    </LinearLayout>
-
-
-                    <View
-                        android:layout_width="1px"
-                        android:layout_height="match_parent"
-                        android:background="@color/grey"></View>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="4dp"
-                        android:layout_weight=".1">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-
-                            android:src="@drawable/ic_search_black" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnAdvSearch"
-                    android:layout_width="156dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/orange"
-                    android:gravity="center"
-                    android:onClick="search"
-                    android:text="@string/advance_search"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_advSearch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/retangularborder"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:padding="5dp"
-                    android:weightSum="9">
-
-                    <Button
-                        android:id="@+id/btn_store"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight="2.2"
-                        android:background="@drawable/get_otp_border_white"
-                        android:drawableRight="@drawable/ic_my_location"
-                        android:onClick="adv_btnsClick"
-                        android:tag="0"
-                        android:text="@string/store"
-                        android:textSize="10sp" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="5dp"
-                        android:layout_weight=".2" />
-
-                    <Button
-                        android:id="@+id/btn_merchant"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight="3.2"
-                        android:background="@drawable/get_otp_border_white"
-                        android:drawableRight="@drawable/ic_my_location"
-                        android:onClick="adv_btnsClick"
-                        android:paddingRight="2dp"
-                        android:tag="1"
-                        android:text="@string/resturant"
-                        android:textSize="10sp" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="5dp"
-                        android:layout_weight=".2" />
-
-                    <Button
-                        android:id="@+id/btn_restraunt"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight="3.2"
-                        android:background="@drawable/get_otp_border_white"
-                        android:drawableRight="@drawable/ic_my_location"
-                        android:onClick="adv_btnsClick"
-                        android:paddingLeft="2dp"
-                        android:paddingRight="2dp"
-                        android:tag="2"
-                        android:text="@string/resturant"
-                        android:textSize="10sp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="10sp"
-                    android:weightSum=".9">
-
-                    <Switch
-                        android:id="@+id/switch_freeshipping"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight=".35"
-                        android:checked="false"
-                        android:text="@string/free_delivery"
-                        android:textSize="10sp"
-                        android:theme="@style/SCBSwitch" />
-
-                    <View
-                        android:layout_width="5dp"
-                        android:layout_height="5dp" />
-
-                    <Switch
-                        android:id="@+id/switch_sales"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight=".25"
-                        android:checked="false"
-                        android:text="@string/Sales"
-                        android:textSize="10sp"
-                        android:theme="@style/SCBSwitch" />
-
-                    <View
-                        android:layout_width="5dp"
-                        android:layout_height="5dp" />
-
-                    <Switch
-                        android:id="@+id/switch_rates"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight=".25"
-                        android:checked="false"
-                        android:text="@string/Rates"
-                        android:textSize="10sp"
-                        android:theme="@style/SCBSwitch" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="8dp"
-                    android:weightSum=".9">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight=".3"
-                        android:orientation="horizontal"
-                        android:visibility="visible"
-                        android:weightSum="1">
-
-                        <Spinner
-                            android:id="@+id/spinner_state"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight=".8"
-                            android:background="@android:color/transparent">
-
-                        </Spinner>
-
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="7dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="5dp"
-                            android:layout_weight=".2"
-                            android:src="@drawable/down_arrow"
-                            app:tint="@color/black" />
-
-                    </LinearLayout>
-
-
-                    <View
-                        android:layout_width="5dp"
-                        android:layout_height="5dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight=".3"
-                        android:orientation="horizontal"
-                        android:visibility="visible">
-
-                        <Spinner
-                            android:id="@+id/spinner_city"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight=".8"
-                            android:background="@android:color/transparent">
-
-                        </Spinner>
-
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="7dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="5dp"
-                            android:layout_weight=".2"
-                            android:src="@drawable/down_arrow"
-                            app:tint="@color/black" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="5dp"
-                        android:layout_height="5dp" />
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight=".3"
-                        android:orientation="horizontal"
-                        android:visibility="visible">
-
-                        <Spinner
-                            android:id="@+id/spinner_category"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight=".8"
-                            android:background="@android:color/transparent">
-
-                        </Spinner>
-
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="7dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="5dp"
-                            android:layout_weight=".2"
-                            android:src="@drawable/down_arrow"
-                            app:tint="@color/black" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_AdvSearchSubmit"
-                    android:layout_width="156dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
-                    android:background="@color/skyBlue"
-                    android:gravity="center"
-                    android:onClick="AdvSearchSubmit"
-                    android:text="@string/Submit"
-                    android:textColor="@color/white" />
-
-
-            </LinearLayout>
-
-
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:onClick="navClick"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/side_nav"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/nav_toggle" />
         </LinearLayout>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/top_navigation"
+            android:layout_gravity="top"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/dark_blue_700"
-            android:visibility="visible"
-            app:tabGravity="center"
-            app:tabIndicatorColor="@color/white"
-            app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/white">
+            android:layout_height="wrap_content"
+            app:menu="@menu/menu"
+            android:background="@color/dark_blue_800"
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/dark_blue_700"
+        android:layout_below="@+id/linear"/>
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/view1">
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/food" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resturant" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Campaigns" />
-
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/webpage2" />-->
-
-
-        </com.google.android.material.tabs.TabLayout>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/container"
+        <LinearLayout
+            android:id="@+id/location_layout"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="4"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/blue_pin"/>
+                <TextView
+                    android:id="@+id/locality"
+                    android:text="@string/home"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/address"
+                android:text="C-52 Sector M, Aliganj, Lucknow, U.P."
+                android:layout_marginLeft="10dp"
+                android:lines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/offer_layout"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:visibility="visible"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:paddingRight="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/offer"/>
+            <TextView
+                android:text="Offers"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
 
-
-    </LinearLayout><!--main layout-->
-
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       android:layout_below="@+id/linear1"/>
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/moreMenus"
         android:layout_width="match_parent"
@@ -841,7 +575,6 @@
 
 
     </RelativeLayout>
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
         android:layoutDirection="ltr"

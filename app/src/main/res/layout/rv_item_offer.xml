@@ -4,12 +4,12 @@
     android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@color/dark_blue_800"
     android:layout_marginLeft="20dp">
 
     <ImageView
         android:id="@+id/ivOffer"
         android:src="@drawable/intro_two"
-        android:background="@color/orange"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"/>
 

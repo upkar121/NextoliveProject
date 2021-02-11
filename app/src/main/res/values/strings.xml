@@ -26,7 +26,7 @@
     <string name="hotel">Hotel</string>
     <string name="offers">Offers</string>
     <string name="name">Nextolive</string>
-
+    <string name="cart"></string>
     <!--    Drawer-->
     <string name="editProfile">EDIT PROFILE</string>
     <string name="myOrders">MY ORDERS</string>
@@ -59,4 +59,28 @@
     <string name="explore">Explore sponsored partner brands</string>
     <string name="popularBrands">Popular Brands</string>
     <string name="bestInsafty">Best in Safety</string>
+
+    <!--    cart-->
+    <string name="tip">Tip your delivery partner</string>
+    <string name="thankYour">Thank your delivery partner for helping you stay safe indoors.
+        Support them through these tough times with a tip</string>
+    <string name="applycoupons">APPLY COUPONS</string>
+    <string name="billDetails">Bill Details</string>
+    <string name="itemTotal">Item Total</string>
+    <string name="deliverypartner">Delivery partner fee</string>
+    <string name="deliveryTip">Delivery Tip</string>
+    <string name="addTip">Add tip</string>
+    <string name="taxesandCharges">Taxes and Charges</string>
+    <string name="toPay">To Pay</string>
+    <string name="addAddress">ADD ADDRESS</string>
+    <string name="viewDetailed">VIEW DETAILED BILL</string>
+    <string name="proceedToPay">PROCEED TO PAY</string>
+    <string name="totalDiscount">Total Discount</string>
+    <string name="home">Home</string>
+    <string name="navigation">Navigation</string>
+    <string name="account">Account</string>
+    <string name="ecommerce">E-Commerce</string>
+    <string name="recharge">Recharge</string>
+    <string name="searchFor">Search for restaurant and food</string>
+    <string name="popCuisines">Popular Cuisines</string>
 </resources>

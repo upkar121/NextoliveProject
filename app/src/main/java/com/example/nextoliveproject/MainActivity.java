@@ -39,8 +39,6 @@ public class MainActivity extends SideNavigationMasterActivity {
         @Override
         public void onBackPressed() {
             super.onBackPressed();
-
             Log.e("BACKPRESS", "PRESSED");
-
         }
 }

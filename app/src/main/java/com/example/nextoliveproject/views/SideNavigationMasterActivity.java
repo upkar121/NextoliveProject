@@ -59,6 +59,7 @@ import com.example.nextoliveproject.Helper.SharedData;
 import com.example.nextoliveproject.MainActivity;
 import com.example.nextoliveproject.R;
 import com.example.nextoliveproject.models.ExpandedMenuModel;
+import com.google.android.gms.wallet.Cart;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -123,47 +124,7 @@ public class SideNavigationMasterActivity extends AppCompatActivity {
     }
 
     public void GetCustomerInformation() {
-//        ApiService apiService = ApiClient.getClient(activity)
-//                .create(ApiService.class);
-//
-//// Fetching all notifications
-//        apiService.getCustomerInformation(SharedData.User_Id(activity))
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeWith(new DisposableSingleObserver<UserModel>() {
-//                    @Override
-//                    public void onSuccess(UserModel userModel) {
-//
-//                        try {
-//                            txtCurrentRank.setText(userModel.rankName);
-//                            txtNextRank.setText(userModel.nextRankName);
-//                            txtGroupName.setText(userModel.groupName);
-//                            Picasso.with(activity).load(userModel.cdnImage).placeholder(R.drawable.user_icon_header).error(R.drawable.user_icon_header).into(profileImage);
-//
-//                        } catch (Exception ex) {
-//                            ex.printStackTrace();
-//
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                        new SnackMsg(activity, e.getMessage());
-//
-//                        try {
-//                            HttpException ex = (HttpException) e;
-//                            if (!TextUtils.isEmpty(ex.response().errorBody().string()) &&
-//                                    ex.response().errorBody().string().toLowerCase().contains("access denied")) {
-//                                ApiClient.RefreshToken(activity);
-//                            } else {
-//                                // new SnackMsg(MyAddressesActivity.this, "else called");
-//                            }
-//                        } catch (Exception ex1) {
-//                            ex1.printStackTrace();
-//                        }
-//                    }
-//                });
+
     }
 
     @Override
@@ -203,7 +164,7 @@ public class SideNavigationMasterActivity extends AppCompatActivity {
         ll_reservationGrid = (LinearLayout) findViewById(R.id.ll_reservationGrid);
         ticketGrid = (GridLayout) findViewById(R.id.ticketGrid);
         ll_ticketGrid = (LinearLayout) findViewById(R.id.ll_ticketGrid);
-        hamburger = (LinearLayout) findViewById(R.id.hamburger);
+        //hamburger = (LinearLayout) findViewById(R.id.hamburger);
         //
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         ll_main_search = (LinearLayout) findViewById(R.id.ll_main_search);
@@ -886,10 +847,10 @@ public class SideNavigationMasterActivity extends AppCompatActivity {
         switch (tag) {
 
             case 0:
-                startActivity(new Intent(SideNavigationMasterActivity.this, ConversationListActivity.class));
+                startActivity(new Intent(SideNavigationMasterActivity.this, MainActivity.class));
                 break;
             case 1:
-                startActivity(new Intent(SideNavigationMasterActivity.this, AboutUsActivity.class));
+                startActivity(new Intent(SideNavigationMasterActivity.this, CartActivity.class));
                 break;
             case 2:
                 //serach
@@ -1213,7 +1174,7 @@ public class SideNavigationMasterActivity extends AppCompatActivity {
 //                });
 //    }
 
-    //ravi
+
     public void search(View view) {
         ll_advSearch.setVisibility(View.VISIBLE);
 
@@ -1341,71 +1302,6 @@ public class SideNavigationMasterActivity extends AppCompatActivity {
 
     public void getSreachDataAccToQuery(String customerId, String clubId, String searchValue) {
 
-//        ApiService apiService = ApiClient.getClient(activity).create(ApiService.class);
-//
-//        final ProgressDialog dialog = AppProgress.showProgress(activity);
-//// Fetching all notes
-//        apiService.GetMerchantsBySearchV2(customerId, clubId, searchValue, "0", "25")
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeWith(new DisposableSingleObserver<List<Merchant>>() {
-//                    @Override
-//                    public void onSuccess(List<Merchant> merchant) {
-//                        LstmerchantList.clear();
-//
-//                        try {
-//                            merchantList = merchant;
-//
-//                            if (merchant.size() == 0) {//here i need to change
-//
-//                            } else {
-//                                for (Merchant merchant1 : merchantList) {
-//                                    LstmerchantList.add(merchant1);
-//                                }
-//
-//                                Intent intent = new Intent(activity, SearchActivity.class);
-//                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                intent.putExtra("module", btn_pressed_module);
-//                                activity.startActivity(intent);
-//                            }
-//
-//                            if (merchantList.isEmpty()) {
-//                                new SnackMsg(activity, getResources().getString(R.string.no_data_found));
-//                            } else {
-//                                //merchantHomePageAdapter = new HomePageFragment.MerchantHomePageAdapter(context, merchantList);
-//                                //homeList.setAdapter(merchantHomePageAdapter);
-//                                //  homeList.setSelection(skipnum);
-//                            }
-//                           /* if (swipeRefreshLayout.isRefreshing()) {
-//                                swipeRefreshLayout.setRefreshing(false);
-//                            }*/
-//                        } catch (Exception ex) {
-//                            ExceptionLog.catchException(ex);
-//                        } finally {
-//                            //AppProgress.hideProgress();
-//                        }
-//                        AppProgress.hideProgress(dialog);
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        // Network error
-//                        new SnackMsg(activity, e.getMessage());
-//                        AppProgress.hideProgress(dialog);
-//
-//                        try {
-//                            HttpException ex = (HttpException) e;
-//
-//                            if (!TextUtils.isEmpty(ex.response().errorBody().string()) && ex.response().errorBody().string().toLowerCase().contains("access denied")) {
-//                                ApiClient.RefreshToken(activity);
-//                            } else {
-//                                // new SnackMsg(MyAddressesActivity.this, "else called");
-//                            }
-//                        } catch (Exception ex1) {
-//                            ex1.printStackTrace();
-//                        }
-//                    }
-//                });
 
     }
 

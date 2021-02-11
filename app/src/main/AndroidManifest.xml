@@ -36,7 +36,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NextoliveProject"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.SignUpActivity"></activity>
+        <activity android:name=".views.ManageSideNavigationActivity"></activity>
+        <activity android:name=".views.MainViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".views.CartActivity" />
+        <activity android:name=".views.SignUpActivity" />
         <activity android:name=".views.SplashActivity" />
         <activity android:name=".views.BarcodeScannerActivityXZing" />
         <activity android:name=".views.AboutUsActivity" />
@@ -46,11 +55,7 @@
         <activity
             android:name=".MainActivity"
             tools:ignore="Instantiatable">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".views.SideNavigationMasterActivity"

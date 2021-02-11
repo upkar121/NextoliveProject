@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.nextoliveproject.views.ResturantFragment;
-import com.example.nextoliveproject.views.fragments.FoodPageFragment;
+import com.example.nextoliveproject.views.fragments.FoodDeliveryFragment;
+import com.example.nextoliveproject.views.fragments.ResturantFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -21,7 +21,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         int currentpos = position + 1;
         Fragment fragmentActivity = new Fragment();
         if (currentpos == 1) {
-            fragmentActivity = new FoodPageFragment();
+            fragmentActivity = new FoodDeliveryFragment();
         } else if (currentpos == 2) {
             fragmentActivity = new ResturantFragment();
         } else if (currentpos == 3) {
