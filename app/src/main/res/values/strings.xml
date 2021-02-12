@@ -59,4 +59,39 @@
     <string name="explore">Explore sponsored partner brands</string>
     <string name="popularBrands">Popular Brands</string>
     <string name="bestInsafty">Best in Safety</string>
+<<<<<<< Updated upstream
+=======
+
+    <!--    cart-->
+    <string name="tip">Tip your delivery partner</string>
+    <string name="thankYour">Thank your delivery partner for helping you stay safe indoors.
+        Support them through these tough times with a tip</string>
+    <string name="applycoupons">APPLY COUPONS</string>
+    <string name="billDetails">Bill Details</string>
+    <string name="itemTotal">Item Total</string>
+    <string name="deliverypartner">Delivery partner fee</string>
+    <string name="deliveryTip">Delivery Tip</string>
+    <string name="addTip">Add tip</string>
+    <string name="taxesandCharges">Taxes and Charges</string>
+    <string name="toPay">To Pay</string>
+    <string name="addAddress">ADD ADDRESS</string>
+    <string name="viewDetailed">VIEW DETAILED BILL</string>
+    <string name="proceedToPay">PROCEED TO PAY</string>
+    <string name="totalDiscount">Total Discount</string>
+    <string name="home">Home</string>
+    <string name="navigation">Navigation</string>
+    <string name="account">Account</string>
+    <string name="ecommerce">E-Commerce</string>
+    <string name="recharge">Recharge</string>
+    <string name="searchFor">Search for restaurant and food</string>
+    <string name="popCuisines">Popular Cuisines</string>
+    <string name="nextolive">Nextolive</string>
+    <string name="enter_your_mobile_number">Enter your mobile number</string>
+    <string name="choose">Choose an account</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+    <string name="social_large_text">By clicking on a social option you may receive an SMS for verification. Message and data rates may apply.</string>
+    <string name="enter_your_code">Enter the 4-digit code sent to you at</string>
+    <string name="welcome_back">Welcome back, sign in to continue</string>
+>>>>>>> Stashed changes
 </resources>

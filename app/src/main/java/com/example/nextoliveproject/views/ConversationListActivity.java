@@ -22,6 +22,7 @@ import com.example.nextoliveproject.MainActivity;
 import com.example.nextoliveproject.R;
 import com.example.nextoliveproject.database.ChatDatabase;
 import com.example.nextoliveproject.utility.Utility;
+import com.example.nextoliveproject.views.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
