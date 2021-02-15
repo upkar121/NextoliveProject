@@ -63,6 +63,8 @@ ImageView socialClose;
 
     }
 
+
+
     public void google(){
 
     }

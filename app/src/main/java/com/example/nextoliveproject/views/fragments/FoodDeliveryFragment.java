@@ -19,12 +19,9 @@ import android.widget.TextView;
 import com.example.nextoliveproject.R;
 
 import java.util.ArrayList;
-
-
-public class FoodPageFragment extends Fragment {
-
+public class FoodDeliveryFragment extends Fragment {
     View view;
-    RecyclerView rvTopPicks,rvOffers,rvCoupons,rvPopularCuisines,rvHighlight,rvSpotlight,rvPopularBrands,rvBestInsafty;
+    RecyclerView topPicks,rvOffers,rvCoupons,rvPopularCuisines,rvHighlight,rvSpotlight,rvPopularBrands,rvBestInsafty;
     ArrayList<String> arrayListTopPick=new ArrayList<>();
     ArrayList<String> arrayListOffer=new ArrayList<>();
     ArrayList<String> arrayListCoupons=new ArrayList<>();
@@ -35,10 +32,8 @@ public class FoodPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_food_page, container, false);
-
-        findviews();
-
+        view = inflater.inflate(R.layout.fragment_food_delivery, container, false);
+        findViewByIds();
         addTopPicRv();
         addOfferRv();
         addCouponRv();
@@ -49,8 +44,9 @@ public class FoodPageFragment extends Fragment {
         addBestInSafetyRv();
         return view;
     }
-    private void findviews() {
-        rvTopPicks=view.findViewById(R.id.rvTopPicks);
+
+    public void findViewByIds(){
+        topPicks = view.findViewById(R.id.rvTopPicks);
         rvOffers=view.findViewById(R.id.rvOffers);
         rvCoupons=view.findViewById(R.id.rvCoupons);
         rvPopularCuisines=view.findViewById(R.id.rvPopularCuisines);
@@ -72,8 +68,8 @@ public class FoodPageFragment extends Fragment {
         arrayListTopPick.add("Mahalaxmi Sweets");
 
         RecyclerView.Adapter adapter=new CustomAdapter(arrayListTopPick,"TopPicks");
-        rvTopPicks.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
-        rvTopPicks.setAdapter(adapter);
+        topPicks.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        topPicks.setAdapter(adapter);
     }
 
     private void addOfferRv() {
@@ -423,5 +419,4 @@ public class FoodPageFragment extends Fragment {
             return localDataSet.size();
         }
     }
-
 }

@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public TextView main_text,error;
     public CountryCodePicker ccp;
     public EditText contact_number;
-    public LinearLayout social_connect,nextPage;
+    public LinearLayout line_error,social_connect,nextPage;
     public View view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                error.setVisibility(View.GONE);
+                line_error.setVisibility(View.GONE);
+                view.setBackgroundColor(getResources().getColor(R.color.dark_blue_800));
                if(!contact_number.getText().toString().isEmpty()){
                    clear_text.setVisibility(View.VISIBLE);
                }else{
@@ -68,6 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void findViewByIds(){
         main_back = findViewById(R.id.main_back);
         main_text = findViewById(R.id.main_text);
+        line_error = findViewById(R.id.line_error);
         ccp = findViewById(R.id.ccp);
         contact_number = findViewById(R.id.contactNumber);
         clear_text = findViewById(R.id.clear_text);
@@ -138,10 +140,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if(number.isEmpty()){
             contact_number.setFocusable(true);
+            error.setText(getResources().getString(R.string.invalid_phone_number));
             view.setBackgroundColor(getResources().getColor(R.color.text_warning));
-            error.setVisibility(View.VISIBLE);
+            line_error.setVisibility(View.VISIBLE);
         }else{
-             Intent i = new Intent(LoginActivity.this, AlreadyAccountActivity.class);
+            /* Check if user is new user or already registered user.
+            * If user already registered we go to AlreadyAccountActivity
+            * If user is new we move to GetOTPActivity*/
+            //Add Api Content here
+             Intent i = new Intent(LoginActivity.this, GetOTPActivity.class);
              i.putExtra(this.EXTRA_CONTACT_NUMBER,country_code+" "+number);
              startActivity(i);
         }

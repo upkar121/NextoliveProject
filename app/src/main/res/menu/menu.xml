@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_home"
+        android:title="@string/home"
+        android:icon="@drawable/white_logo"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView" />
+    <item android:id="@+id/action_recharge"
+        android:icon="@drawable/recharge"
+        android:title="@string/recharge"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_ecomm"
+        android:icon="@drawable/exhibition"
+        android:title="@string/ecommerce"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_search"
+        android:icon="@drawable/search"
+        android:title="@string/search"
+        app:showAsAction="always" />
+</menu>

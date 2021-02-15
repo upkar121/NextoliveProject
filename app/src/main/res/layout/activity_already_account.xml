@@ -64,6 +64,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/black"/>
+            <LinearLayout
+                android:id="@+id/line_error"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/error_cross"/>
+                <TextView
+                    android:id="@+id/error"
+                    android:text="@string/invalid_password"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/allerta"
+                    android:textColor="@color/text_warning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
     <LinearLayout

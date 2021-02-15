@@ -3,6 +3,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="facebook_app_id">[APP_ID]</string>
+    <string name="fb_login_protocol_scheme">fb[APP_ID]</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBxHbO1QEeBQGERLKtbDcVSaE-LgRmCfeE</string>
+    <string name="google_places_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBxHbO1QEeBQGERLKtbDcVSaE-LgRmCfeE</string>
+
     <string name="please_wait">Please wait…</string>
     <string name="network_error">Network Error</string>
     <string name="something_error">Oops! Something went wrong.</string>
@@ -59,8 +64,6 @@
     <string name="explore">Explore sponsored partner brands</string>
     <string name="popularBrands">Popular Brands</string>
     <string name="bestInsafty">Best in Safety</string>
-<<<<<<< Updated upstream
-=======
 
     <!--    cart-->
     <string name="tip">Tip your delivery partner</string>
@@ -93,5 +96,28 @@
     <string name="social_large_text">By clicking on a social option you may receive an SMS for verification. Message and data rates may apply.</string>
     <string name="enter_your_code">Enter the 4-digit code sent to you at</string>
     <string name="welcome_back">Welcome back, sign in to continue</string>
->>>>>>> Stashed changes
+    <string name="invalid_phone_number">This phone number is inavlid</string>
+    <string name="invalid_password">Wrong password</string>
+
+    <string name="send_otp">Send OTP</string>
+    <string name="generate_otp">Generate OTP</string>
+    <string name="received_message">Received Message</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="invalid_otp">The SMS passcode you\'ve entered is incorrect.</string>
+    <string name="already_have_an_account">Already have an account? <font color='#01C6DB'>Login</font></string>
+    <string name="check_correct_mobile_number">Did you enter the correct mobile number?</string>
+    <string name="resend_code">Resend code in </string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="change">Change</string>
+    <string name="confirmLoc">Comfirm Location</string>
+
+
 </resources>

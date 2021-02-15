@@ -20,7 +20,7 @@ public class AlreadyAccountActivity extends AppCompatActivity implements View.On
    public ImageView main_back,visibility;
    public EditText password;
    public TextView forget,signin_error,no_account;
-   public LinearLayout nextPage;
+   public LinearLayout nextPage,line_error;
    int click = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class AlreadyAccountActivity extends AppCompatActivity implements View.On
         signin_error = findViewById(R.id.signin_error);
         no_account = findViewById(R.id.no_account);
         nextPage = findViewById(R.id.nextPage);
+        line_error = findViewById(R.id.line_error);
     }
 
 

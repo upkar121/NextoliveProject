@@ -35,22 +35,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NextoliveProject"
-        android:usesCleartextTraffic="true">
-<<<<<<< Updated upstream
-        <activity android:name=".views.SignUpActivity"></activity>
-        <activity android:name=".views.SplashActivity" />
-=======
-        <activity android:name=".views.login.AlreadyAccountActivity"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".views.Signup.SignupActivity"></activity>
+        <activity android:name=".views.MapLocActivity" />
+        <activity android:name=".views.MainViewActivity" />
+        <activity
+            android:name=".views.login.AlreadyAccountActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="adjustResize"></activity>
-        <activity android:name=".views.login.GetOTPActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".views.login.GetOTPActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".views.SocialActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/Theme.Transparent_2" />
+            android:theme="@style/Theme.Transparent_2"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".views.FirstScreen"
             android:configChanges="keyboardHidden|orientation|screenSize" />
@@ -65,35 +67,27 @@
             android:name=".views.login.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".views.ManageSideNavigationActivity" />
-        <activity android:name=".views.MainViewActivity" />
-        <activity android:name=".views.CartActivity" />
-        <activity android:name=".views.SignUpActivity" />
->>>>>>> Stashed changes
         <activity android:name=".views.BarcodeScannerActivityXZing" />
         <activity android:name=".views.AboutUsActivity" />
         <activity android:name=".views.ManageChatActivity" />
         <activity android:name=".views.ConversationListActivity" />
         <activity
             android:name=".MainActivity"
-<<<<<<< Updated upstream
-            tools:ignore="Instantiatable">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-=======
             tools:ignore="Instantiatable" />
->>>>>>> Stashed changes
         <activity
             android:name=".views.SideNavigationMasterActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+
+        <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
     </application>
 
 </manifest>

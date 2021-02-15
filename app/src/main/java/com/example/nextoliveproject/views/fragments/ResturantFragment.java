@@ -1,4 +1,4 @@
-package com.example.nextoliveproject.views;
+package com.example.nextoliveproject.views.fragments;
 
 import android.os.Bundle;
 
