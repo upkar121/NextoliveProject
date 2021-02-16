@@ -1,7 +1,10 @@
 package com.example.nextoliveproject.views.fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,9 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.nextoliveproject.R;
+import com.example.nextoliveproject.views.Food_Detail_Activity;
 
 import java.util.ArrayList;
 public class FoodDeliveryFragment extends Fragment {
@@ -28,6 +33,8 @@ public class FoodDeliveryFragment extends Fragment {
     ArrayList<String> arrayPopularCuisines=new ArrayList<>();
     ArrayList<String> arrayListHighlight=new ArrayList<>();
     ArrayList<String> arrayListSpotLight=new ArrayList<>();
+
+    Context context;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +50,12 @@ public class FoodDeliveryFragment extends Fragment {
         addPopularBrandsRv();
         addBestInSafetyRv();
         return view;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     public void findViewByIds(){
@@ -233,10 +246,12 @@ public class FoodDeliveryFragment extends Fragment {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             private TextView tvRestaurent;
+            private LinearLayout pick_item;
 
             public ViewHolder(View view) {
                 super(view);
                 tvRestaurent = view.findViewById(R.id.tvRestaurent);
+                pick_item = view.findViewById(R.id.pick_item);
             }
         }
         public CustomAdapter(ArrayList<String> dataSet,String type) {
@@ -253,6 +268,13 @@ public class FoodDeliveryFragment extends Fragment {
         @Override
         public void onBindViewHolder(ViewHolder viewHolder, final int position) {
             viewHolder.tvRestaurent.setText(localDataSet.get(position));
+            viewHolder.pick_item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(context, Food_Detail_Activity.class));
+                }
+            });
+
         }
         @Override
         public int getItemCount() {

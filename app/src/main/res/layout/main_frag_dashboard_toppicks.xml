@@ -7,35 +7,32 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <ImageView
             android:src="@drawable/ic_like"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            android:layout_marginLeft="5dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
         <TextView
             android:text="@string/topPicks"
             android:textSize="18dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_blue_800"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
         android:id="@+id/rvTopPicks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/rvOffers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -44,18 +41,14 @@
     <TextView
         android:text="@string/coupons"
         android:textSize="18dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/dark_blue_800"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/rvCoupons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

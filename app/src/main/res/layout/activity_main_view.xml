@@ -20,7 +20,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:onClick="navClick"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="OnClick">
                 <ImageView
                     android:id="@+id/side_nav"
                     android:layout_width="24dp"
@@ -111,11 +112,17 @@
             </LinearLayout>
         </LinearLayout>
 
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_below="@+id/linear1"
+            android:background="@color/white_smoke" />
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/linear1"/>
+            android:layout_below="@+id/view2"/>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/moreMenus"

@@ -25,6 +25,7 @@ import com.example.nextoliveproject.Helper.OtpEditText;
 import com.example.nextoliveproject.R;
 import com.example.nextoliveproject.network.SmsListener;
 import com.example.nextoliveproject.network.SmsReceiver;
+import com.example.nextoliveproject.views.LocationActivity;
 import com.example.nextoliveproject.views.MapLocActivity;
 
 import java.util.Timer;
@@ -124,7 +125,8 @@ public class GetOTPActivity extends AppCompatActivity implements View.OnClickLis
             contact.setText(Html.fromHtml(text + "<font color=#f37328>" + getResources().getString(R.string.check_correct_mobile_number) + "</font>"));
             line_error.setVisibility(View.VISIBLE);
         }else{
-              startActivity(new Intent(GetOTPActivity.this, MapLocActivity.class));
+              startActivity(new Intent(GetOTPActivity.this, LocationActivity.class));
+              finish();
         }
     }
 

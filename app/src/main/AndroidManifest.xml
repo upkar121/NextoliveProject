@@ -37,7 +37,12 @@
         android:theme="@style/Theme.NextoliveProject"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.Signup.SignupActivity"></activity>
+        <activity android:name=".views.Food_Detail_Activity"></activity>
+        <activity android:name=".views.OfferActivity" />
+        <activity android:name=".views.CartActivity" />
+        <activity android:name=".views.ManageSideNavigation" />
+        <activity android:name=".views.LocationActivity" />
+        <activity android:name=".views.Signup.SignupActivity" />
         <activity android:name=".views.MapLocActivity" />
         <activity android:name=".views.MainViewActivity" />
         <activity
@@ -81,13 +86,12 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
     </application>
 
 </manifest>

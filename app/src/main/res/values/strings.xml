@@ -118,6 +118,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="change">Change</string>
     <string name="confirmLoc">Comfirm Location</string>
+    <string name="turn_on">Turn on</string>
 
 
 </resources>

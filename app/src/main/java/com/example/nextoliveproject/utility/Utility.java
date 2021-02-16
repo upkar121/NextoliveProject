@@ -1,8 +1,20 @@
 package com.example.nextoliveproject.utility;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.nextoliveproject.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,4 +52,29 @@ public class Utility {
         }
         return dateString;
     }
+
+
+    public static void dialogbox(Context activity,String title,String msg){
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_design);
+        TextView text = (TextView) dialog.findViewById(R.id.title_textview);
+        text.setText(title);
+        TextView define_text = (TextView) dialog.findViewById(R.id.define_text);
+        define_text.setText(msg);
+        ImageView dialogButton = (ImageView) dialog.findViewById(R.id.cancel);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
+    }
+
+
+
 }

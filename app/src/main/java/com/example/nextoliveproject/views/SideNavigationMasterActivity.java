@@ -88,7 +88,6 @@ public class SideNavigationMasterActivity extends AppCompatActivity {
     public static GridLayout mainGrid, bankGrid, reservationGrid, ticketGrid;
     public static LinearLayout ll_bankGrid, ll_reservationGrid, ll_ticketGrid;
     int i = 0;
-    LinearLayout hamburger;
     Activity activity;
     Intent intent;
     String UserId, encoded;
@@ -203,7 +202,6 @@ public class SideNavigationMasterActivity extends AppCompatActivity {
         ll_reservationGrid = (LinearLayout) findViewById(R.id.ll_reservationGrid);
         ticketGrid = (GridLayout) findViewById(R.id.ticketGrid);
         ll_ticketGrid = (LinearLayout) findViewById(R.id.ll_ticketGrid);
-        hamburger = (LinearLayout) findViewById(R.id.hamburger);
         //
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         ll_main_search = (LinearLayout) findViewById(R.id.ll_main_search);
@@ -253,13 +251,6 @@ public class SideNavigationMasterActivity extends AppCompatActivity {
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(GravityCompat.START);
                 }
-            }
-        });
-        hamburger.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("WrongConstant")
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(Gravity.START);
             }
         });
 

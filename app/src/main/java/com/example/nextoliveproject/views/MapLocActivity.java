@@ -9,49 +9,70 @@ import androidx.fragment.app.FragmentActivity;
 
 
 import android.Manifest;
+import android.animation.IntEvaluator;
+import android.animation.ValueAnimator;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nextoliveproject.R;
+import com.example.nextoliveproject.utility.Utility;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.GroundOverlay;
+import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
 
 import java.io.IOException;
 import java.util.List;
 
+import static com.example.nextoliveproject.views.login.LoginActivity.REQUEST_PERMISSIONS_REQUEST_CODE;
 
-public class MapLocActivity extends FragmentActivity implements OnMapReadyCallback {
 
+public class MapLocActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
+    public static String EXTRA_ADDRESS = "Address";
+    public static String EXTRA_AREA_ADDRESS = "Area_Address";
     SupportMapFragment mapFragment;
-    LinearLayout btnConfirmLoc;
     private GoogleMap mMap;
-    public TextView address_text;
-
+    public TextView address_text,address_first;
+    public ImageView main_back;
+    public RelativeLayout current_location;
+    public Button change_current;
+    View mapView;
     //Get Address from pin
     private GoogleMap.OnCameraIdleListener onCameraIdleListener;
 
     //New variables for current place picker
-//    private PlacesClient mPlacesClient;
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
     // The geographical location where the device is currently located. That is, the last-known
@@ -64,115 +85,96 @@ public class MapLocActivity extends FragmentActivity implements OnMapReadyCallba
     private static final int DEFAULT_ZOOM = 15;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
-//
-//    // Used for selecting the current place.
-//    private static final int M_MAX_ENTRIES = 5;
-//    private String[] mLikelyPlaceNames;
-//    private String[] mLikelyPlaceAddresses;
-//    private String[] mLikelyPlaceAttributions;
-//    private LatLng[] mLikelyPlaceLatLngs;
 
     private final String TAG = MapLocActivity.class.getSimpleName();
-    private String address;
+    private String address ,area_address;
 
-    ImageView ivClose;
     LinearLayout btnSave;
 
-    Intent mapResult = new Intent();
-
+    public GroundOverlay circle = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_loc);
 
-        mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.google_map);
-        // ivClose = findViewById(R.id.iv_close);
-        btnSave = findViewById(R.id.btnConfirmLoc);
-        address_text = findViewById(R.id.address_textview);
+        findViewByIds();
 
+        mapView = mapFragment.getView();
         mapFragment.getMapAsync(this);
 
-//        String apiKey = getString(R.string.google_maps_key);
-//        Places.initialize(getApplicationContext(), apiKey);
-//        mPlacesClient = Places.createClient(this);
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
-//        pickCurrentPlace();
 
         configureCameraIdle();
 
-//        ivClose.setOnClickListener(v -> {
-//            setResult(RESULT_CANCELED, mapResult);
-//            finish();
-//        });
+        main_back.setOnClickListener(this);
+        current_location.setOnClickListener(this);
+        change_current.setOnClickListener(this);
+        btnSave.setOnClickListener(this);
 
-
-        btnSave.setOnClickListener(v -> {
-            mapResult.putExtra("address", address);
-            setResult(RESULT_OK, mapResult);
-            finish();
-        });
-
-    }
-
-    private void getLocationPermission() {
-        /*
-         * Request location permission, so that we can get the location of the
-         * device. The result of the permission request is handled by a callback,
-         * onRequestPermissionsResult.
-         */
-        mLocationPermissionGranted = false;
-        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            mLocationPermissionGranted = true;
-        } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-        }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        mLocationPermissionGranted = false;
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    mLocationPermissionGranted = true;
-                }
-            }
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.main_back:
+                onBackPressed();
+                finish();
+                break;
+            case R.id.relative_current_location:
+                getDeviceLocation();
+                break;
+            case R.id.change_current:
+                startActivity(new Intent(MapLocActivity.this,LocationActivity.class));
+                finish();
+                break;
+            case R.id.btnConfirmLoc:
+                Intent mapResult = new Intent(MapLocActivity.this,MainViewActivity.class);
+                mapResult.putExtra(EXTRA_ADDRESS, address);
+                mapResult.putExtra(EXTRA_AREA_ADDRESS, area_address);
+                startActivity(mapResult);
+                finish();
+                break;
+
         }
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+
+    public void findViewByIds() {
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
+        btnSave = findViewById(R.id.btnConfirmLoc);
+        address_text = findViewById(R.id.address_textview);
+        address_first = findViewById(R.id.address_first);
+        main_back = findViewById(R.id.main_back);
+        current_location = findViewById(R.id.relative_current_location);
+        change_current = findViewById(R.id.change_current);
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         mMap.setOnCameraIdleListener(onCameraIdleListener);
-        mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
-                configureCameraIdle();
-            }
-        });
-        // Prompt the user for permission.
-        getLocationPermission();
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions();
+        }
+        mMap.setMyLocationEnabled(true);
+        mMap.setIndoorEnabled(false);
+
+        if (mapView != null &&
+                mapView.findViewById(Integer.parseInt("1")) != null) {
+            // Get the button view
+            View locationButton = ((View) mapView.findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
+            // and next place it, on bottom right (as Google Maps app)
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)
+                    locationButton.getLayoutParams();
+            // position on right bottom
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+            layoutParams.setMargins(0, 0, 1, 1);
+            locationButton.setVisibility(View.GONE);
+        }
 
         pickCurrentPlace();
 
@@ -189,12 +191,15 @@ public class MapLocActivity extends FragmentActivity implements OnMapReadyCallba
                 try {
                     List<Address> addressList = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
                     if (addressList != null && addressList.size() > 0) {
+                        area_address = addressList.get(0).getLocality();
                         String locality = addressList.get(0).getAddressLine(0);
                         String country = addressList.get(0).getCountryName();
                         if (!locality.isEmpty() && !country.isEmpty()) {
-//                            resutText.setText(locality + "  " + country);
                             address = locality + "  " + country;
                             address_text.setText(address);
+                        }
+                        if(!area_address.isEmpty()){
+                            address_first.setText(area_address);
                         }
                     }
 
@@ -206,89 +211,10 @@ public class MapLocActivity extends FragmentActivity implements OnMapReadyCallba
         };
     }
 
-//    private void getCurrentPlaceLikelihoods() {
-//        // Use fields to define the data types to return.
-//        List<Place.Field> placeFields = Arrays.asList(Place.Field.NAME, Place.Field.ADDRESS,
-//                Place.Field.LAT_LNG);
-//
-//        // Get the likely places - that is, the businesses and other points of interest that
-//        // are the best match for the device's current location.
-//        @SuppressWarnings("MissingPermission") final FindCurrentPlaceRequest request =
-//                FindCurrentPlaceRequest.builder(placeFields).build();
-//        Task<FindCurrentPlaceResponse> placeResponse = mPlacesClient.findCurrentPlace(request);
-//        placeResponse.addOnCompleteListener(this,
-//                new OnCompleteListener<FindCurrentPlaceResponse>() {
-//                    @RequiresApi(api = Build.VERSION_CODES.O)
-//                    @Override
-//                    public void onComplete(@NonNull Task<FindCurrentPlaceResponse> task) {
-//                        if (task.isSuccessful()) {
-//                            FindCurrentPlaceResponse response = task.getResult();
-//                            // Set the count, handling cases where less than 5 entries are returned.
-//                            int count;
-//                            if (response.getPlaceLikelihoods().size() < M_MAX_ENTRIES) {
-//                                count = response.getPlaceLikelihoods().size();
-//                            } else {
-//                                count = M_MAX_ENTRIES;
-//                            }
-//
-//                            int i = 0;
-//                            mLikelyPlaceNames = new String[count];
-//                            mLikelyPlaceAddresses = new String[count];
-//                            mLikelyPlaceAttributions = new String[count];
-//                            mLikelyPlaceLatLngs = new LatLng[count];
-//
-//                            for (PlaceLikelihood placeLikelihood : response.getPlaceLikelihoods()) {
-//                                Place currPlace = placeLikelihood.getPlace();
-//                                mLikelyPlaceNames[i] = currPlace.getName();
-//                                mLikelyPlaceAddresses[i] = currPlace.getAddress();
-//                                mLikelyPlaceAttributions[i] = (currPlace.getAttributions() == null) ?
-//                                        null : String.join(" ", currPlace.getAttributions());
-//                                mLikelyPlaceLatLngs[i] = currPlace.getLatLng();
-//
-//                                String currLatLng = (mLikelyPlaceLatLngs[i] == null) ?
-//                                        "" : mLikelyPlaceLatLngs[i].toString();
-//
-//                                Log.i(TAG, "Place " + currPlace.getName()
-//                                        + " has likelihood: " + placeLikelihood.getLikelihood()
-//                                        + " at " + currLatLng);
-//
-//                                i++;
-//                                if (i > (count - 1)) {
-//                                    break;
-//                                }
-//                            }
-//
-//
-//                            // COMMENTED OUT UNTIL WE DEFINE THE METHOD
-//                            // Populate the ListView
-////                            fillPlacesList();
-//                        } else {
-//                            Exception exception = task.getException();
-//                            if (exception instanceof ApiException) {
-//                                ApiException apiException = (ApiException) exception;
-//                                Log.e(TAG, "Place not found: " + apiException.getStatusCode());
-//                            }
-//                        }
-//                    }
-//                });
-//    }
-
     private void getDeviceLocation() {
-        /*
-         * Get the best and most recent location of the device, which may be null in rare
-         * cases when a location is not available.
-         */
         try {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                Toast.makeText(this, "I am here", Toast.LENGTH_SHORT).show();
-                return;
+                requestPermissions();
             }
             Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
                 locationResult.addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -299,16 +225,29 @@ public class MapLocActivity extends FragmentActivity implements OnMapReadyCallba
                             mLastKnownLocation = location;
                             Log.d(TAG, "Latitude: " + mLastKnownLocation.getLatitude());
                             Log.d(TAG, "Longitude: " + mLastKnownLocation.getLongitude());
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(mLastKnownLocation.getLatitude(),
-                                            mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+
+                            LatLng latLng =  new LatLng(mLastKnownLocation.getLatitude(),
+                                    mLastKnownLocation.getLongitude());
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
+                            if(circle == null){
+                                circleOverlay(latLng);
+                            }else{
+                                circle.remove();
+                                circle = null;
+                                circleOverlay(latLng);
+                            }
+
+
+
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");
-                            mMap.moveCamera(CameraUpdateFactory
-                                    .newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
+//                            mMap.moveCamera(CameraUpdateFactory
+//                                    .newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
+
+                            Utility.dialogbox(MapLocActivity.this,"Location Error","* Check weather your location is on or not.\n* Check gps location is on.\n* On gps to access your current location.");
+
                         }
 
-//                        getCurrentPlaceLikelihoods();
                     }
                 });
         } catch (Exception e) {
@@ -320,21 +259,79 @@ public class MapLocActivity extends FragmentActivity implements OnMapReadyCallba
         if (mMap == null) {
             return;
         }
+        getDeviceLocation();
+    }
 
-        if (mLocationPermissionGranted) {
-            getDeviceLocation();
-        } else {
-            // The user has not granted permission.
-            Log.i(TAG, "The user did not grant location permission.");
 
-            // Add a default marker, because the user hasn't selected a place.
-//            mMap.addMarker(new MarkerOptions()
-//                    .title(getString(R.string.default_info_title))
-//                    .position(mDefaultLocation)
-//                    .snippet(getString(R.string.default_info_snippet)));
+    private void requestPermissions() {
+// Request permission
+        ActivityCompat.requestPermissions(MapLocActivity.this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                REQUEST_PERMISSIONS_REQUEST_CODE);
+    }
 
-            // Prompt the user for permission.
-            getLocationPermission();
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        mLocationPermissionGranted = false;
+        if (requestCode == REQUEST_PERMISSIONS_REQUEST_CODE) {
+            for (int i = 0; i < permissions.length; i++) {
+                String permission = permissions[i];
+                int grantResult = grantResults[i];
+                if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                    mLocationPermissionGranted = true;
+                } else {
+                    Toast.makeText(this, "Location permission declined", Toast.LENGTH_SHORT).show();
+                }
+
+            }
         }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    public void circleOverlay(LatLng searchStopPoint) {
+        // The drawable to use for the circle
+        GradientDrawable d = new GradientDrawable();
+        d.setShape(GradientDrawable.OVAL);
+        d.setSize(1000, 1000);
+        d.setColor(Color.parseColor("#1F678F"));
+        d.setStroke(5, Color.TRANSPARENT);
+
+        Bitmap bitmap = Bitmap.createBitmap(d.getIntrinsicWidth()
+                , d.getIntrinsicHeight()
+                , Bitmap.Config.ARGB_8888);
+
+        // Convert the drawable to bitmap
+        Canvas canvas = new Canvas(bitmap);
+        d.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        d.draw(canvas);
+
+        // Radius of the circle
+        final int radius = 200;
+
+        // Add the circle to the map
+        circle = mMap.addGroundOverlay(new GroundOverlayOptions()
+                .position(searchStopPoint, 2 * radius).image(BitmapDescriptorFactory.fromBitmap(bitmap)));
+        circle.setTransparency(0.5f);
+        ValueAnimator valueAnimator = new ValueAnimator();
+        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
+        valueAnimator.setIntValues(0, radius);
+        valueAnimator.setDuration(3000);
+        valueAnimator.setEvaluator(new IntEvaluator());
+        valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float animatedFraction = valueAnimator.getAnimatedFraction();
+                circle.setDimensions(animatedFraction * radius * 2);
+            }
+        });
+        valueAnimator.start();
     }
 }

@@ -3,6 +3,7 @@ package com.example.nextoliveproject.views;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,22 +18,31 @@ import com.example.nextoliveproject.views.fragments.RechargeFragment;
 import com.example.nextoliveproject.views.fragments.ResturantFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainViewActivity extends SideNavigationMasterActivity implements View.OnClickListener {
+public class MainViewActivity extends ManageSideNavigation implements View.OnClickListener {
     BottomNavigationView topavigation;
     ImageView sidenav;
     TextView locality,address;
     LinearLayout locationLayout,offerLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view);
         findViews();
+        locationLayout.setOnClickListener(this);
+        offerLayout.setOnClickListener(this);
         setListners();
+        locality.setText(getIntent().getStringExtra(MapLocActivity.EXTRA_AREA_ADDRESS));
+        address.setText(getIntent().getStringExtra(MapLocActivity.EXTRA_ADDRESS));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         //Loading default fragment
         getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.fragment_container,new FoodDeliveryFragment()).commit();
     }
+
     private void findViews() {
         topavigation = findViewById(R.id.top_navigation);
         sidenav = findViewById(R.id.side_nav);
@@ -72,14 +82,18 @@ public class MainViewActivity extends SideNavigationMasterActivity implements Vi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.offer_layout:
+                startActivity(new Intent(MainViewActivity.this,OfferActivity.class));
+                finish();
                 break;
             case R.id.location_layout:
+                startActivity(new Intent(MainViewActivity.this,LocationActivity.class));
+                finish();
                 break;
         }
     }
 
 
-
     public void handleMenuClicks(View view) {
     }
+
 }

@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
 <RelativeLayout
+    android:id="@+id/relative_map"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
@@ -24,8 +26,37 @@
         android:layout_centerVertical="true"
         android:src="@drawable/blue_pin"/>
 </RelativeLayout>
+    <ImageView
+        android:id="@+id/main_back"
+        android:layout_margin="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_arrow_back"/>
+    <RelativeLayout
+        android:id="@+id/relative_current_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/loc">
+        <ImageView
+            android:id="@+id/cuurent_location_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/round_white_circle_stroke"/>
+        <ImageView
+            android:id="@+id/cuurent_location"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_location_orange"/>
+
+    </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/loc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
@@ -41,6 +72,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"/>
             <TextView
+                android:id="@+id/address_first"
                 android:text="Address Street"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -54,6 +86,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"/>
             <Button
+                android:id="@+id/change_current"
                 android:text="@string/change"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/skyBlue"
@@ -64,6 +97,7 @@
             android:id="@+id/address_textview"
             android:text="Sector N, Aliganj, Lucknow,U.P."
             android:textColor="@color/black"
+            android:maxLines="1"
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -71,6 +105,7 @@
             android:id="@+id/btnConfirmLoc"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:layout_alignParentBottom="true"
             android:background="@color/dark_blue_800"
