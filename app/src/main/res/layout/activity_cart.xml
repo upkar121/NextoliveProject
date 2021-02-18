@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.CartActivity"
-    android:background="@color/grey"
+    android:background="@color/white_smoke"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,6 +16,7 @@
         android:paddingRight="20dp"
         android:background="@color/white">
         <ImageView
+            android:id="@+id/food_image"
             android:src="@drawable/food2"
             android:layout_width="50dp"
             android:layout_height="60dp"/>
@@ -27,11 +28,18 @@
             android:paddingBottom="5dp"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/resturant_name"
                 android:text="Cake Raj Bakery"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/allerta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/resturant_location"
                 android:text="Aliganj"
+                android:textSize="12sp"
+                android:fontFamily="@font/allerta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -57,28 +65,26 @@
                 android:paddingRight="20dp"
                 android:orientation="vertical">
 
-
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCartFoods"
+                    android:id="@+id/rv_food_add"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <View
-                    android:background="@color/grey"
+                    android:background="@color/white_smoke"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"/>
 
                 <EditText
                     android:drawableLeft="@drawable/res_note"
-                    android:hint="Any restaurant request? We will try our best to convey"
+                    android:hint="      Any restaurant request? We will try our best to convey"
                     android:layout_width="match_parent"
                     android:singleLine="true"
                     android:background="@null"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="10dp"
                     android:textSize="12sp"
+                    android:fontFamily="@font/allerta"
                     android:layout_height="wrap_content"/>
-
-
 
             </LinearLayout>
 
@@ -110,56 +116,68 @@
 
                     <TextView
                         android:text="@string/tip"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/allerta"
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:text="@string/thankYour"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/allerta"
+                        android:layout_marginTop="5dp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
                         <TextView
                             android:id="@+id/tv20"
                             android:text="Rs.20"
-                            android:layout_width="60dp"
-                            android:layout_height="30dp"
+                            android:layout_width="70dp"
+                            android:layout_height="35dp"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:gravity="center"
-                            android:background="@drawable/cart_ll_bg"/>
+                            android:fontFamily="@font/allerta"
+                            android:textColor="@color/black"
+                            android:background="@drawable/border_light_rectangle"/>
                         <TextView
                             android:id="@+id/tv30"
                             android:text="Rs.30"
-                            android:layout_width="60dp"
-                            android:layout_height="30dp"
+                            android:layout_width="70dp"
+                            android:layout_height="35dp"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:gravity="center"
-                            android:background="@drawable/cart_ll_bg"/>
+                            android:fontFamily="@font/allerta"
+                            android:textColor="@color/black"
+                            android:background="@drawable/border_light_rectangle"/>
                         <TextView
                             android:id="@+id/tv50"
                             android:text="Rs.50"
-                            android:layout_width="60dp"
-                            android:layout_height="30dp"
+                            android:layout_width="70dp"
+                            android:layout_height="35dp"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:gravity="center"
-                            android:background="@drawable/cart_ll_bg"/>
+                            android:fontFamily="@font/allerta"
+                            android:textColor="@color/black"
+                            android:background="@drawable/border_light_rectangle"/>
                         <TextView
                             android:id="@+id/tvOther"
                             android:text="Other"
-                            android:layout_width="60dp"
-                            android:layout_height="30dp"
+                            android:layout_width="70dp"
+                            android:layout_height="35dp"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:gravity="center"
-                            android:background="@drawable/cart_ll_bg"/>
+                            android:fontFamily="@font/allerta"
+                            android:textColor="@color/black"
+                            android:background="@drawable/border_light_rectangle"/>
                     </LinearLayout>
 
                     <EditText
@@ -201,6 +219,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"/>
                 <ImageView
+                    android:id="@+id/move_coupon_page"
                     android:src="@drawable/ic_arrow_forward"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"/>
@@ -259,7 +278,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/tvdelParFee"
+                        android:id="@+id/delivery_partner_fees"
                         android:text="@string/deliverypartner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -281,15 +300,15 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/tvdiscount"
+                        android:id="@+id/tv_discount"
                         android:text="@string/totalDiscount"
-                        android:textColor="@color/skyBlue"
+                        android:textColor="@color/dark_blue_800"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
 
                 <View
-                    android:background="@color/grey"
+                    android:background="@color/white_smoke"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="5dp"
@@ -311,7 +330,7 @@
                     <TextView
                         android:id="@+id/tvDelTip"
                         android:text="@string/addTip"
-                        android:textColor="@color/orange"
+                        android:textColor="@color/dark_blue_800"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -338,7 +357,7 @@
                 </LinearLayout>
 
                 <View
-                    android:background="@color/grey"
+                    android:background="@color/white_smoke"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="5dp"
@@ -379,7 +398,7 @@
         android:layout_alignParentBottom="true">
 
         <View
-            android:background="@color/grey"
+            android:background="@color/white_smoke"
             android:layout_width="match_parent"
             android:layout_height="2dp"/>
 
@@ -428,7 +447,7 @@
             <TextView
                 android:id="@+id/tvAddAddress"
                 android:text="@string/addAddress"
-                android:textColor="@color/orange"
+                android:textColor="@color/dark_blue_800"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -440,7 +459,7 @@
             android:weightSum="2">
 
             <LinearLayout
-                android:background="@color/grey"
+                android:background="@color/white_smoke"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

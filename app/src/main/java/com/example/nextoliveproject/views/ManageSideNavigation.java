@@ -8,7 +8,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -48,15 +47,12 @@ public class ManageSideNavigation extends AppCompatActivity {
     ExpandableListView expandableList;
     CustomExpandableListAdapter mMenuAdapter;
     Activity activity;
-
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = this;
-
-
-
     }
 
     @Override
