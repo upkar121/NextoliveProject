@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 
 import com.example.nextoliveproject.utility.ConstantVariable;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class SharedData {
     public static Activity activity;
     public static SharedPreferences.Editor sharedPreferenceseditor;
@@ -36,4 +39,35 @@ public class SharedData {
 
         return getSP(context).getString(ConstantVariable.User_Id, defvalue);
     }
+
+    public static void latitude(Context context, String value) {
+
+        putSP(context).putString(ConstantVariable.Latitude, value).commit();
+    }
+
+    public static String latitude(Context context) {
+
+        return getSP(context).getString(ConstantVariable.Latitude, defvalue);
+    }
+
+    public static void longitude(Context context, String value) {
+
+        putSP(context).putString(ConstantVariable.Longitude, value).commit();
+    }
+
+    public static String longitude(Context context) {
+
+        return getSP(context).getString(ConstantVariable.Longitude, defvalue);
+    }
+
+    public static void locality(Context context, String value) {
+
+        putSP(context).putString(ConstantVariable.Locality, value).commit();
+    }
+
+    public static String locality(Context context) {
+
+        return getSP(context).getString(ConstantVariable.Locality, defvalue);
+    }
+
 }

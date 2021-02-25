@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:background="@color/transparent"
+    tools:context=".views.ViewsCommentsActivity">
+
+    <ImageView
+        android:id="@+id/foodImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/food_one"/>
+    <RelativeLayout
+        android:id="@+id/review_relative_layout1"
+       android:layout_below="@+id/foodImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+        <LinearLayout
+            android:id="@+id/ll3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userimage"
+                android:layout_gravity="center_vertical"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/skyBlue"
+                android:padding="5dp"/>
+            <EditText
+                android:id="@+id/review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".9"
+                android:backgroundTint="@color/transparent"
+                android:hint="Add a review"
+                android:maxLines="1"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textCursorDrawable="@drawable/black_cursor"
+                android:cursorVisible="false"
+                android:textSize="12sp"/>
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/send_dark_blue"
+                android:padding="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll3">
+               <androidx.recyclerview.widget.RecyclerView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <!--    <LinearLayout-->
+<!--        android:id="@+id/bottomLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--       android:layout_alignParentBottom="true"-->
+<!--        android:orientation="vertical">-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            android:background="@color/colorPrimaryDark"-->
+<!--            android:baselineAligned="false"-->
+<!--            android:elevation="10dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            tools:targetApi="lollipop">-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_like"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight=".25"-->
+<!--                android:gravity="center">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="25dp"-->
+<!--                        android:layout_height="25dp"-->
+<!--                        android:layout_centerInParent="true"-->
+<!--                        android:contentDescription="TODO"-->
+<!--                        android:src="@drawable/like_unselected"-->
+<!--                        android:tint="@color/white" />-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="@dimen/circle_count"-->
+<!--                        android:layout_height="@dimen/circle_count"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:background="@drawable/rounded_corner_red_border"-->
+<!--                        android:gravity="center">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/likeCount"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:gravity="center"-->
+<!--                            android:text=""-->
+<!--                            android:textColor="@color/white"-->
+<!--                            android:textSize="10sp"-->
+<!--                            android:textStyle="italic" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </RelativeLayout>-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_dislike"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight=".25"-->
+<!--                android:gravity="center">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="25dp"-->
+<!--                        android:layout_height="25dp"-->
+<!--                        android:layout_centerInParent="true"-->
+<!--                        android:contentDescription="TODO"-->
+<!--                        android:src="@drawable/dislike_unselected"-->
+<!--                        android:tint="@color/white" />-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="@dimen/circle_count"-->
+<!--                        android:layout_height="@dimen/circle_count"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:background="@drawable/rounded_corner_red_border"-->
+<!--                        android:gravity="center">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/dislikeCount"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:gravity="center"-->
+<!--                            android:text=""-->
+<!--                            android:textColor="@color/white"-->
+<!--                            android:textSize="10sp"-->
+<!--                            android:textStyle="italic" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </RelativeLayout>-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_comment"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight=".25"-->
+<!--                android:gravity="center">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="25dp"-->
+<!--                        android:layout_height="25dp"-->
+<!--                        android:layout_centerInParent="true"-->
+<!--                        android:contentDescription="TODO"-->
+<!--                        android:src="@drawable/chat_unselected"-->
+<!--                        android:tint="@color/white" />-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="@dimen/circle_count"-->
+<!--                        android:layout_height="@dimen/circle_count"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:background="@drawable/rounded_corner_red_border"-->
+<!--                        android:gravity="center">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tv_comment"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:gravity="center"-->
+<!--                            android:text=""-->
+<!--                            android:textColor="@color/white"-->
+<!--                            android:textSize="10sp"-->
+<!--                            android:textStyle="italic" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </RelativeLayout>-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight=".25"-->
+<!--                android:gravity="center">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/share"-->
+<!--                    android:layout_width="25dp"-->
+<!--                    android:layout_height="25dp"-->
+<!--                    android:contentDescription="TODO"-->
+<!--                    android:src="@drawable/share"-->
+<!--                    android:tint="@color/white" />-->
+
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/redLayout"
+        android:layout_width="match_parent"
+        android:minHeight="200dp"
+        android:layout_height="400dp"
+        android:background="#5f00"
+        android:layout_alignParentBottom="true" >
+
+    </RelativeLayout>
+</RelativeLayout>

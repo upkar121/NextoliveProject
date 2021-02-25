@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        card_view:cardBackgroundColor="@color/white_smoke"
+        card_view:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:id="@+id/r1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circle_image"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@color/green"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_textviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/circle_image"
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/foodName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Butter Paneer Dosa"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹170"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tittle1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="10dp"-->
+<!--                        android:text="tittle"-->
+<!--                          android:textColor="@color/black"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:visibility="gone"/>-->
+                </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/add_number_item_relative_layout"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="120dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/retangularborder">
+                  <RelativeLayout
+                      android:id="@+id/add_number"
+                      android:layout_centerInParent="true"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent">
+                      <TextView
+                          android:id="@+id/tvSub"
+                          android:text="  -  "
+                          android:textSize="25sp"
+                          android:textStyle="bold"
+                          android:paddingLeft="10dp"
+                          android:gravity="center"
+                          android:layout_width="wrap_content"
+                          android:layout_height="match_parent"/>
+                      <TextView
+                          android:id="@+id/tvQty"
+                          android:text=" 1 "
+                          android:textSize="17sp"
+                          android:layout_centerInParent="true"
+                          android:textColor="@color/black"
+                          android:gravity="center"
+                          android:layout_width="30dp"
+                          android:layout_height="wrap_content"/>
+                      <TextView
+                          android:id="@+id/tvAdd"
+                          android:text="  +  "
+                          android:textSize="22sp"
+                          android:paddingRight="10dp"
+                          android:layout_alignParentEnd="true"
+                          android:textColor="@color/green"
+                          android:gravity="center"
+                          android:layout_width="wrap_content"
+                          android:layout_height="match_parent"/>
+                  </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tv_add_item"
+                        android:layout_width="match_parent"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        android:paddingTop="2dp"
+                        android:textAlignment="center"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:textColor="@color/green"
+                        android:text="ADD"
+                        android:fontFamily="@font/allerta" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/r1"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/foodImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible"
+                    android:src="@drawable/food_one" />
+<!--                <VideoView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:id="@+id/video_cardVoice"/>-->
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/ll1"
+                android:layout_marginBottom="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="4"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/hastag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:linksClickable="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="#tasty food"
+                    android:textColor="@color/skyBlue"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/descriptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Served with sambhar and chutney"
+                    android:textColor="@color/grey"
+                    android:textSize="15sp" />
+            </LinearLayout>
+                <ImageView
+                    android:id="@+id/expand_image1"
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="7dp"
+                    android:src="@drawable/down_arrow"/>
+            </LinearLayout>
+            <View
+                android:id="@+id/view1"
+                android:layout_below="@+id/ll2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+           <RelativeLayout
+               android:id="@+id/review_relative_layout"
+               android:layout_below="@+id/view1"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="5dp"
+               android:visibility="gone">
+               <LinearLayout
+                   android:id="@+id/ll3"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+                   <de.hdodenhof.circleimageview.CircleImageView
+                       android:id="@+id/userimage"
+                       android:layout_gravity="center_vertical"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:src="@color/skyBlue"
+                       android:padding="5dp"/>
+                   <EditText
+                       android:id="@+id/review"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight=".9"
+                       android:backgroundTint="@color/transparent"
+                       android:hint="Add a review"
+                       android:maxLines="1"
+                       android:inputType="text"
+                       android:textColor="@color/black"
+                       android:textColorHint="@color/black"
+                       android:textCursorDrawable="@drawable/black_cursor"
+                       android:cursorVisible="false"
+                       android:textSize="12sp"/>
+                   <ImageView
+                       android:layout_width="32dp"
+                       android:layout_height="32dp"
+                       android:layout_gravity="center_vertical"
+                       android:src="@drawable/send_dark_blue"
+                       android:padding="5dp"/>
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@+id/ll3">
+
+               </LinearLayout>
+           </RelativeLayout>
+
+
+        </RelativeLayout>
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/left_overlay"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:contentDescription="TODO"-->
+<!--                android:src="@drawable/dislike" />-->
+
+<!--        </FrameLayout>-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/right_overlay"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:contentDescription="TODO"-->
+<!--                android:src="@drawable/like" />-->
+
+<!--        </FrameLayout>-->
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

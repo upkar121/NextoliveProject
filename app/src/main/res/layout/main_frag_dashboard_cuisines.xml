@@ -22,9 +22,12 @@
             android:layout_height="wrap_content"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPopularCuisines"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:clipToPadding="false"/>
 
     </LinearLayout>
 
@@ -38,7 +41,10 @@
             android:id="@+id/rvHighlight"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:clipToPadding="false"/>
 
     </LinearLayout>
 
@@ -49,55 +55,65 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/work_station"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_blue_800"
+                    android:text="@string/InTheSpotlight"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:src="@drawable/work_station"/>
-            <TextView
-                android:textStyle="bold"
-                android:textColor="@color/dark_blue_800"
-                android:text="@string/InTheSpotlight"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Space
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:textStyle="bold"
-                android:textColor="@color/dark_blue_800"
-                android:text="@string/seeAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_blue_800"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:text="@string/seeAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:padding="5dp"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/right_arrow"
-                app:civ_circle_background_color="@color/dark_blue_800"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:padding="5dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_listarrow_38" />
+            </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <TextView
             android:text="@string/explore"
             android:layout_marginLeft="10dp"
             android:textColor="@color/dark_blue_800"
+            android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSpotlight"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:clipToPadding="false"/>
 
     </LinearLayout>
 
@@ -105,6 +121,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+
         android:orientation="vertical">
         <TextView
             android:text="@string/popularBrands"
@@ -117,15 +134,19 @@
         <TextView
             android:text="Most ordered from around your locality"
             android:paddingLeft="5dp"
+            android:textSize="12sp"
             android:textColor="@color/dark_blue_800"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPopularBrands"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:clipToPadding="false"/>
 
     </LinearLayout>
 
@@ -134,38 +155,39 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
         android:orientation="vertical">
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <ImageView
-                android:layout_marginLeft = "5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="10dp"
                 android:src="@drawable/shield"/>
             <TextView
                 android:textStyle="bold"
                 android:textColor="@color/dark_blue_800"
                 android:text="@string/bestInsafty"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-
         <TextView
             android:text="Restaurents with best safety standards"
+            android:layout_marginLeft="10dp"
             android:textColor="@color/dark_blue_800"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+            android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBestInsafty"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:clipToPadding="false"/>
 
     </LinearLayout>
 

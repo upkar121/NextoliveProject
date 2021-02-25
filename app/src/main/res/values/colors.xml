@@ -23,6 +23,7 @@
     <color name="custom_showcase_bg">#b9002153</color>
     <color name="reach_destination_green">#319C53</color>
     <color name="green">#52a136</color>
+    <color name="light_green">#95CA49</color>
     <color name="secondary_text_material_dark">#f37328</color>
     <color name="text_dark">#000000</color>
     <color name="text_hint">#999999</color>
@@ -42,6 +43,8 @@
     <color name="ux_orange">#f37328</color>
     <color name="ux_tabheader">#3970A5</color>
     <color name="ux_white">#eaf2f3</color>
+
+    <color name="maroon">#800000</color>
 
     <!-- NEW COLORs-->
     <color name="skyBlue">#73B1D6</color>

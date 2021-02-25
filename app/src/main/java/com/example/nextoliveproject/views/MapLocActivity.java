@@ -1,6 +1,5 @@
 package com.example.nextoliveproject.views;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -35,6 +34,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nextoliveproject.Helper.SharedData;
 import com.example.nextoliveproject.R;
 import com.example.nextoliveproject.utility.Utility;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -153,6 +153,7 @@ public class MapLocActivity extends FragmentActivity implements OnMapReadyCallba
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions();
         }
+        mMap.setMyLocationEnabled(true);
 
         if (mapView != null &&
                 mapView.findViewById(Integer.parseInt("1")) != null) {
@@ -182,9 +183,14 @@ public class MapLocActivity extends FragmentActivity implements OnMapReadyCallba
 
                 try {
                     List<Address> addressList = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+
+                    SharedData.latitude(MapLocActivity.this,""+latLng.latitude);
+                    SharedData.longitude(MapLocActivity.this,""+latLng.longitude);
+
                     if (addressList != null && addressList.size() > 0) {
                         area_address = addressList.get(0).getLocality();
                         String locality = addressList.get(0).getAddressLine(0);
+                        SharedData.locality(MapLocActivity.this,locality);
                         String country = addressList.get(0).getCountryName();
                         if (!locality.isEmpty() && !country.isEmpty()) {
                             address = locality + "  " + country;

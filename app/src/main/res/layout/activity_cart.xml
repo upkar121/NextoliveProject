@@ -5,15 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.CartActivity"
-    android:background="@color/white_smoke"
+    android:background="@color/white"
     android:orientation="vertical">
-
+    <ImageView
+        android:id="@+id/main_back"
+        android:layout_margin="10dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_arrow_back"/>
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:layout_below="@+id/main_back"
         android:background="@color/white">
         <ImageView
             android:id="@+id/food_image"
@@ -29,7 +35,7 @@
             android:orientation="vertical">
             <TextView
                 android:id="@+id/resturant_name"
-                android:text="Cake Raj Bakery"
+                android:text="Shri Surendra Bhojnalay"
                 android:textSize="14sp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/allerta"
@@ -128,57 +134,62 @@
                         android:textSize="12sp"
                         android:fontFamily="@font/allerta"
                         android:layout_marginTop="5dp"/>
+                     <ScrollView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:scrollbars="horizontal">
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="10dp"
+                             android:orientation="horizontal">
+                             <TextView
+                                 android:id="@+id/tv20"
+                                 android:text="Rs.20"
+                                 android:layout_width="70dp"
+                                 android:layout_height="35dp"
+                                 android:layout_marginLeft="5dp"
+                                 android:layout_marginRight="5dp"
+                                 android:gravity="center"
+                                 android:fontFamily="@font/allerta"
+                                 android:textColor="@color/black"
+                                 android:background="@drawable/border_light_rectangle"/>
+                             <TextView
+                                 android:id="@+id/tv30"
+                                 android:text="Rs.30"
+                                 android:layout_width="70dp"
+                                 android:layout_height="35dp"
+                                 android:layout_marginLeft="5dp"
+                                 android:layout_marginRight="5dp"
+                                 android:gravity="center"
+                                 android:fontFamily="@font/allerta"
+                                 android:textColor="@color/black"
+                                 android:background="@drawable/border_light_rectangle"/>
+                             <TextView
+                                 android:id="@+id/tv50"
+                                 android:text="Rs.50"
+                                 android:layout_width="70dp"
+                                 android:layout_height="35dp"
+                                 android:layout_marginLeft="5dp"
+                                 android:layout_marginRight="5dp"
+                                 android:gravity="center"
+                                 android:fontFamily="@font/allerta"
+                                 android:textColor="@color/black"
+                                 android:background="@drawable/border_light_rectangle"/>
+                             <TextView
+                                 android:id="@+id/tvOther"
+                                 android:text="Other"
+                                 android:layout_width="70dp"
+                                 android:layout_height="35dp"
+                                 android:layout_marginLeft="5dp"
+                                 android:layout_marginRight="5dp"
+                                 android:gravity="center"
+                                 android:fontFamily="@font/allerta"
+                                 android:textColor="@color/black"
+                                 android:background="@drawable/border_light_rectangle"/>
+                         </LinearLayout>
+                     </ScrollView>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/tv20"
-                            android:text="Rs.20"
-                            android:layout_width="70dp"
-                            android:layout_height="35dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:gravity="center"
-                            android:fontFamily="@font/allerta"
-                            android:textColor="@color/black"
-                            android:background="@drawable/border_light_rectangle"/>
-                        <TextView
-                            android:id="@+id/tv30"
-                            android:text="Rs.30"
-                            android:layout_width="70dp"
-                            android:layout_height="35dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:gravity="center"
-                            android:fontFamily="@font/allerta"
-                            android:textColor="@color/black"
-                            android:background="@drawable/border_light_rectangle"/>
-                        <TextView
-                            android:id="@+id/tv50"
-                            android:text="Rs.50"
-                            android:layout_width="70dp"
-                            android:layout_height="35dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:gravity="center"
-                            android:fontFamily="@font/allerta"
-                            android:textColor="@color/black"
-                            android:background="@drawable/border_light_rectangle"/>
-                        <TextView
-                            android:id="@+id/tvOther"
-                            android:text="Other"
-                            android:layout_width="70dp"
-                            android:layout_height="35dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:gravity="center"
-                            android:fontFamily="@font/allerta"
-                            android:textColor="@color/black"
-                            android:background="@drawable/border_light_rectangle"/>
-                    </LinearLayout>
 
                     <EditText
                         android:id="@+id/etTip"

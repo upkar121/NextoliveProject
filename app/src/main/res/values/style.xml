@@ -12,7 +12,7 @@
         <item name="android:colorForeground">#42221f1f
         </item>
     </style>
-
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="TextStyle">
         <item name="android:layoutDirection">ltr</item>
         <item name="android:textDirection">ltr</item>
