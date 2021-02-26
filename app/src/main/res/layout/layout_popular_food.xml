@@ -83,6 +83,7 @@
                     <RelativeLayout
                         android:id="@+id/add_number"
                         android:layout_centerInParent="true"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <TextView
@@ -117,14 +118,13 @@
                     <TextView
                         android:id="@+id/tv_add_item"
                         android:layout_width="match_parent"
+                        android:layout_centerInParent="true"
                         android:textStyle="bold"
-                        android:visibility="gone"
-                        android:paddingTop="2dp"
-                        android:textAlignment="center"
+                        android:gravity="center"
                         android:layout_height="match_parent"
-                        android:textSize="14sp"
+                        android:textSize="17sp"
                         android:textColor="@color/green"
-                        android:text="ADD"
+                        android:text="+ ADD"
                         android:fontFamily="@font/allerta" />
                 </RelativeLayout>
             </RelativeLayout>

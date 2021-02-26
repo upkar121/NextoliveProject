@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.nextoliveproject.R;
+import com.example.nextoliveproject.utility.AppSharedData;
 import com.example.nextoliveproject.utility.Utility;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class CartActivity extends AppCompatActivity {
     TextView tvAddAddress;
 
     double total,delCharges,DelTip,tax,toPay,discount;
-    int amount;
+    float amount;
     int count;
     //DBHelper db;
     @Override
@@ -43,8 +44,8 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         findViewByIds();
-        amount = getIntent().getIntExtra(EXTRAS_TOTAL_AMOUNT,0);
-        count = getIntent().getIntExtra(EXTRAS_NO_OF_ITEMS,0);
+        amount = AppSharedData.Total;
+        count = 1;
         adapter=new FoodAdapter(amount,count);
         rv_food_add.setAdapter(adapter);
         rv_food_add.setLayoutManager(new LinearLayoutManager(this));
@@ -66,10 +67,10 @@ public class CartActivity extends AppCompatActivity {
     // rv rvCartFoods adapter
     public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
-        int amount;
+        float amount;
         int count;
         //private List<CartItems> localDataSet ;
-        public FoodAdapter(int amount,int count) {
+        public FoodAdapter(float amount,int count) {
               this.amount =amount;
               this.count =count;
         }

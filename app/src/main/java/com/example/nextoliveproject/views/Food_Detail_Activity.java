@@ -33,6 +33,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.nextoliveproject.Helper.LogoProgressDialog;
 import com.example.nextoliveproject.Helper.SharedData;
 import com.example.nextoliveproject.R;
+import com.example.nextoliveproject.models.CartItems;
+import com.example.nextoliveproject.models.FoodItem;
 import com.example.nextoliveproject.network.Server_URL;
 import com.example.nextoliveproject.utility.AppSharedData;
 import com.example.nextoliveproject.utility.ConstantVariable;
@@ -51,8 +53,8 @@ import java.util.Map;
 public class Food_Detail_Activity extends AppCompatActivity implements View.OnClickListener {
 
     LinearLayout main_back;
-    RelativeLayout addnumberItem,move_to_cart,capture;
-    TextView add_text,tv_subtract,tv_quantity,tv_add,number_item_added;
+    public static RelativeLayout move_to_cart;
+    public static TextView number_item_added;
     Toolbar toolbar;
     ViewPager viewPager,viewPager1;
     TabLayout tabLayout,tabLayout1;
@@ -95,13 +97,17 @@ public class Food_Detail_Activity extends AppCompatActivity implements View.OnCl
 
 
         main_back.setOnClickListener(this);
-////        add_text.setOnClickListener(this);
-////        tv_subtract.setOnClickListener(this);
-////        tv_add.setOnClickListener(this);
-          move_to_cart.setOnClickListener(this);
+        move_to_cart.setOnClickListener(this);
 
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
     private void findViewByIDS(){
 
          main_back = findViewById(R.id.main_back);
@@ -163,8 +169,6 @@ public class Food_Detail_Activity extends AppCompatActivity implements View.OnCl
 //                break;
             case R.id.move_to_cart:
                 Intent i = new Intent(Food_Detail_Activity.this,CartActivity.class);
-                i.putExtra(CartActivity.EXTRAS_NO_OF_ITEMS,count_number);
-                i.putExtra(CartActivity.EXTRAS_TOTAL_AMOUNT,total);
                 startActivity(i);
                 break;
 
@@ -192,15 +196,18 @@ public class Food_Detail_Activity extends AppCompatActivity implements View.OnCl
                                         AppSharedData.FoodItems.clear();
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject json = jsonArray.getJSONObject(i);
-                                            HashMap<String, String> dash1 = new HashMap<>();
-                                            dash1.put("productid",json.getString("productid"));
-                                            dash1.put("name",json.getJSONObject("submenus").getString("name"));
-                                            dash1.put("price",json.getString("price"));
-                                            dash1.put("availability",json.getString("availability"));
-                                            dash1.put("productimage",json.getString("productimage"));
-                                            dash1.put("title",json.getString("title"));
-                                            dash1.put("description",json.getString("description"));
-                                            AppSharedData.FoodItems.add(dash1);
+                                            FoodItem foodItem = new FoodItem();
+                                            foodItem.setProductid(json.getString("productid"));
+                                            foodItem.setName(json.getJSONObject("submenus").getString("name"));
+                                            foodItem.setPrice(Integer.parseInt(json.getString("price")));
+                                            foodItem.setAvailability(json.getString("availability"));
+                                            foodItem.setImage(json.getString("productimage"));
+                                            foodItem.setDescriptions(json.getString("description"));
+                                            foodItem.setMenuId(json.getJSONObject("submenus").getInt("menuid"));
+                                            String[] tag = {json.getString("title")};
+                                            foodItem.setTags(tag);
+                                            AppSharedData.FoodItems.add(foodItem);
+
                                             if (pdialog.getDialog().isShowing()) {
                                                 pdialog.getDialog().dismiss();
                                             }

@@ -4,6 +4,7 @@ package com.example.nextoliveproject.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,31 +14,36 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.nextoliveproject.R;
+import com.example.nextoliveproject.models.CartItems;
+import com.example.nextoliveproject.models.FoodItem;
+import com.example.nextoliveproject.utility.AppSharedData;
 import com.example.nextoliveproject.views.Food_Detail_Activity;
+import com.example.nextoliveproject.views.ViewsCommentsActivity;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class CardStackAdapterFood extends RecyclerView.Adapter<CardStackAdapterFood.ViewHolder>{
 
-    //public static LinearLayout ll_like, ll_dislike, ll_comment;
-    ArrayList<HashMap<String, String>> data;
+    ArrayList<FoodItem> data;
     Context context;
-    TextView likeCount, dislikeCount, tv_comment;
-    SharedPreferences sharedPreferences;
     int position = 0;
     private LayoutInflater inflater;
+    private ArrayList<CartItems> arrayCartItems = AppSharedData.ArrayCartItems;
+    CartItems cart = null;
 
-    int count =0;
-
-    public CardStackAdapterFood(Context context, ArrayList<HashMap<String, String>> data) {
+    public CardStackAdapterFood(Context context, ArrayList<FoodItem> data) {
         this.inflater = LayoutInflater.from(context);
         this.data = data;
         this.context = context;
@@ -55,28 +61,97 @@ public class CardStackAdapterFood extends RecyclerView.Adapter<CardStackAdapterF
         return new ViewHolder(inflater.inflate(R.layout.layout_userhome, parent, false));
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int pos) {
         position = pos;
-        HashMap<String, String> Item = data.get(position);
+        int price;
 
-        ViewHolder.foodName.setText(Item.get("name"));
+        FoodItem Item = data.get(position);
+        int menuId = Item.getMenuId();
 
-        Picasso.with(context).load(Item.get("productimage")).error(R.drawable.food_one).into(ViewHolder.foodImage);
+        String foodName = Item.getName();
+         price = Item.getPrice();
 
-        ViewHolder.price.setText("₹"+Item.get("price"));
+        ViewHolder.foodName.setText(foodName);
+        Picasso.with(context).load(Item.getImage()).error(R.drawable.food_one).into(ViewHolder.foodImage);
+        ViewHolder.price.setText("₹"+price);
+        ViewHolder.descriptions.setText(Item.getDescriptions());
+        ViewHolder.hastag.setText("#"+Item.getAvailability());
 
-        ViewHolder.descriptions.setText(Item.get("description"));
+        TextView qty = holder.itemView.findViewById(R.id.tvQty);
+        TextView add =  holder.itemView.findViewById(R.id.tvAdd);
+        TextView subtract =  holder.itemView.findViewById(R.id.tvSub);
 
-        ViewHolder.hastag.setText("#"+Item.get("availability"));
-
-        ViewHolder.tvAdd.setOnClickListener(new View.OnClickListener() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int quantity = cart.getQuantity();
+                quantity++;
+                qty.setText(""+ quantity);
+                AppSharedData.Total= (float) quantity * Float.parseFloat(""+price);
+                Food_Detail_Activity.number_item_added.setText(quantity+" Items"+" | "+"₹"+AppSharedData.Total);
+                cart.setQuantity(quantity);
+            }
+        });
 
-//                tv_quantity.setText(""+ count_number[0]);
-//                total = count_number[0] *amount;
-//                number_item_added.setText(""+ count_number[0] +" Item | "+"₹"+total);
+        subtract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int quantity = cart.getQuantity();
+                quantity--;
+                if(quantity == 0){
+                    Food_Detail_Activity.move_to_cart.setVisibility(View.GONE);
+                    holder.itemView.findViewById(R.id.add_number).setVisibility(View.GONE);
+                    holder.itemView.findViewById(R.id.tv_add_item).setVisibility(View.VISIBLE);
+                }else{
+                    qty.setText(""+ quantity);
+                    AppSharedData.Total= (float)quantity * Float.parseFloat(""+price);
+                    Food_Detail_Activity.move_to_cart.setVisibility(View.VISIBLE);
+                    Food_Detail_Activity.number_item_added.setText(quantity+" Items"+" | "+AppSharedData.Total);
+                }
+
+                cart.setQuantity(quantity);
+            }
+        });
+
+        holder.itemView.findViewById(R.id.tv_add_item).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!arrayCartItems.isEmpty()){
+                    for(int i =0;i<arrayCartItems.size();i++){
+                        if(arrayCartItems.get(i).getMenuId() == menuId){
+                            cart = arrayCartItems.get(i);
+                        }
+                    }
+                    if(cart == null){
+                        cart = new CartItems();
+                        cart.setMenuId(menuId);
+                        cart.setPrice(Item.getPrice());
+                        cart.setName(Item.getName());
+                        cart.setQuantity(0);
+                        AppSharedData.ArrayCartItems.add(cart);
+                    }
+                }else{
+                    cart = new CartItems();
+                    cart.setMenuId(menuId);
+                    cart.setPrice(Item.getPrice());
+                    cart.setName(Item.getName());
+                    cart.setQuantity(Integer.parseInt("0"));
+                    AppSharedData.ArrayCartItems.add(cart);
+
+                }
+                holder.itemView.findViewById(R.id.add_number).setVisibility(View.VISIBLE);
+                holder.itemView.findViewById(R.id.tv_add_item).setVisibility(View.GONE);
+                Food_Detail_Activity.move_to_cart.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        ViewHolder.expand_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ViewsCommentsActivity.class));
             }
         });
 
@@ -94,12 +169,6 @@ public class CardStackAdapterFood extends RecyclerView.Adapter<CardStackAdapterF
         return data.size();
     }
 
-    public void addSpots(ArrayList<HashMap<String, String>> data) {
-
-        this.data.addAll(data);
-    }
-
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public static CardView cardView;
@@ -110,8 +179,8 @@ public class CardStackAdapterFood extends RecyclerView.Adapter<CardStackAdapterF
         public static TextView hastag;
         public static TextView descriptions;
         public static ImageView expand_image;
-        public static TextView tvSub,tvQty,tvAdd;
-        public static RelativeLayout add_number,review_relative_layout;
+        public static RelativeLayout review_relative_layout;
+
 
         ViewHolder(View view) {
 
@@ -124,11 +193,7 @@ public class CardStackAdapterFood extends RecyclerView.Adapter<CardStackAdapterF
             hastag = view.findViewById(R.id.hastag);
             descriptions = view.findViewById(R.id.descriptions);
             expand_image = view.findViewById(R.id.expand_image1);
-            add_number = view.findViewById(R.id.add_number);
             review_relative_layout = view.findViewById(R.id.review_relative_layout);
-            tvAdd = view.findViewById(R.id.tvAdd);
-            tvSub = view.findViewById(R.id.tvSub);
-            tvQty = view.findViewById(R.id.tvQty);
         }
     }
 

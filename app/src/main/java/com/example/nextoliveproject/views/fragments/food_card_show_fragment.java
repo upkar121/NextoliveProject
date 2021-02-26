@@ -111,6 +111,21 @@ public class food_card_show_fragment extends Fragment implements CardStackListen
 
     @Override
     public void onCardAppeared(View view, int position) {
+        if(!AppSharedData.ArrayCartItems.isEmpty()){
+            for(int i=0;i<AppSharedData.ArrayCartItems.size();i++){
+                if(AppSharedData.ArrayCartItems.get(i).getMenuId() == AppSharedData.FoodItems.get(position).getMenuId()){
+                    view.findViewById(R.id.add_number).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.tv_add_item).setVisibility(View.GONE);
+                }else{
+                    view.findViewById(R.id.add_number).setVisibility(View.GONE);
+                    view.findViewById(R.id.tv_add_item).setVisibility(View.VISIBLE);
+                }
+            }
+
+        }else{
+            view.findViewById(R.id.add_number).setVisibility(View.GONE);
+            view.findViewById(R.id.tv_add_item).setVisibility(View.VISIBLE);
+        }
 
     }
 

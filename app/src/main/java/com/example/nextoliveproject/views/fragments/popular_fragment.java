@@ -132,9 +132,9 @@ public void setupCardStackView(){
     managerPopular.setCanScrollHorizontal(true);
     managerPopular.setCanScrollVertical(false);
 
-    adapterPopular = new CardStackAdapterPopularFood(context,AppSharedData.FoodItems);
-    cardStackView1.setLayoutManager(managerPopular);
-    cardStackView1.setAdapter(adapterPopular);
+//    adapterPopular = new CardStackAdapterPopularFood(context,AppSharedData.FoodItems);
+//    cardStackView1.setLayoutManager(managerPopular);
+//    cardStackView1.setAdapter(adapterPopular);
 
 }
 }
