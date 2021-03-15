@@ -3,26 +3,17 @@ package com.example.nextoliveproject.models;
 public class FoodItem {
 
     String productid;
+    int userId;
     String name;
     String image;
     int price;
     String availability;
     String descriptions;
-    String[] tags;
+    String title;
     int menuId;
+    String date;
 
     public FoodItem() {
-    }
-
-    public FoodItem(String productid, String name, String image, int price, String availability, String descriptions, String[] tags, int menuId) {
-        this.productid = productid;
-        this.name = name;
-        this.image = image;
-        this.price = price;
-        this.availability = availability;
-        this.descriptions = descriptions;
-        this.tags = tags;
-        this.menuId = menuId;
     }
 
     public int getMenuId() {
@@ -33,12 +24,12 @@ public class FoodItem {
         this.menuId = menuId;
     }
 
-    public String[] getTags() {
-        return tags;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTags(String[] tags) {
-        this.tags = tags;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getProductid() {
@@ -89,7 +80,31 @@ public class FoodItem {
         this.price = price;
     }
 
+    public int getUserId() {
+        return userId;
+    }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
+    public String getDate() {
+        return date;
+    }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public FoodItem(String productid, int userId, String name, String image, int price, String availability, String descriptions, String title, int menuId) {
+        this.productid = productid;
+        this.userId = userId;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.availability = availability;
+        this.descriptions = descriptions;
+        this.title = title;
+        this.menuId = menuId;
+    }
 }

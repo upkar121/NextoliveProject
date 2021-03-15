@@ -33,6 +33,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.nextoliveproject.Helper.LogoProgressDialog;
 import com.example.nextoliveproject.Helper.SharedData;
 import com.example.nextoliveproject.R;
+import com.example.nextoliveproject.database.Data.Cart;
+import com.example.nextoliveproject.database.Data.Food;
+import com.example.nextoliveproject.database.FoodItemsDatabase;
 import com.example.nextoliveproject.models.CartItems;
 import com.example.nextoliveproject.models.FoodItem;
 import com.example.nextoliveproject.network.Server_URL;
@@ -72,17 +75,18 @@ public class Food_Detail_Activity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            this.getWindow().setStatusBarColor(getResources().getColor(R.color.dark_blue_800));
-        }
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            this.getWindow().setStatusBarColor(getResources().getColor(R.color.dark_blue_800));
+//        }
+       // this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_food_detail);
         context = this;
         restaurantDetail.clear();
         findViewByIDS();
 
         restaurantDetail = AppSharedData.ChoosedRestaurant.get(0);
+
         foodApi(this);
         double lat = Double.parseDouble(SharedData.latitude(Food_Detail_Activity.this));
         double lng = Double.parseDouble(SharedData.longitude(Food_Detail_Activity.this));
@@ -106,6 +110,12 @@ public class Food_Detail_Activity extends AppCompatActivity implements View.OnCl
     protected void onResume() {
         super.onResume();
 
+        if(AppSharedData.ITEMCOUNT > 0){
+            move_to_cart.setVisibility(View.VISIBLE);
+        }else{
+            move_to_cart.setVisibility(View.GONE);
+        }
+
     }
 
     private void findViewByIDS(){
@@ -119,11 +129,6 @@ public class Food_Detail_Activity extends AppCompatActivity implements View.OnCl
 
         viewPager1 = (ViewPager) findViewById(R.id.viewpager1);
         tabLayout1 = (TabLayout) findViewById(R.id.tab_layout1);
-//        add_text = findViewById(R.id.tv_add_item);
-//        addnumberItem = findViewById(R.id.add_number);
-//        tv_subtract = findViewById(R.id.tvSub);
-//        tv_add = findViewById(R.id.tvAdd);
-//        tv_quantity = findViewById(R.id.tvQty);
         move_to_cart =findViewById(R.id.move_to_cart);
         number_item_added =findViewById(R.id.number_item_added);
 
@@ -144,29 +149,7 @@ public class Food_Detail_Activity extends AppCompatActivity implements View.OnCl
                 onBackPressed();
                 finish();
                 break;
-//            case R.id.tv_add_item:
-//                add_text.setVisibility(View.GONE);
-//                addnumberItem.setVisibility(View.VISIBLE);
-//                move_to_cart.setVisibility(View.VISIBLE);
-//                break;
-//            case R.id.tvSub:
-//                if(count_number == 1){
-//                    add_text.setVisibility(View.VISIBLE);
-//                    addnumberItem.setVisibility(View.GONE);
-//                    move_to_cart.setVisibility(View.GONE);
-//                }else{
-//                    count_number --;
-//                    tv_quantity.setText(""+count_number);
-//                    total = count_number*amount;
-//                    number_item_added.setText(""+count_number +" Item | "+"₹"+total);
-//                }
-//                break;
-//            case R.id.tvAdd:
-//                count_number++;
-//                tv_quantity.setText(""+count_number);
-//                total = count_number*amount;
-//                number_item_added.setText(""+count_number +" Item | "+"₹"+total);
-//                break;
+
             case R.id.move_to_cart:
                 Intent i = new Intent(Food_Detail_Activity.this,CartActivity.class);
                 startActivity(i);
@@ -191,29 +174,31 @@ public class Food_Detail_Activity extends AppCompatActivity implements View.OnCl
 
                                 try {
                                     if(response.getBoolean("success")){
-
+                                        Food food = new Food(Food_Detail_Activity.this);
+                                        food.openDatabase();
+                                        food.deleteAllRecord(FoodItemsDatabase.Food_Table);
                                         JSONArray jsonArray = response.getJSONArray("data");
                                         AppSharedData.FoodItems.clear();
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject json = jsonArray.getJSONObject(i);
                                             FoodItem foodItem = new FoodItem();
                                             foodItem.setProductid(json.getString("productid"));
+                                            foodItem.setUserId(json.getInt("user_id"));
                                             foodItem.setName(json.getJSONObject("submenus").getString("name"));
                                             foodItem.setPrice(Integer.parseInt(json.getString("price")));
                                             foodItem.setAvailability(json.getString("availability"));
                                             foodItem.setImage(json.getString("productimage"));
                                             foodItem.setDescriptions(json.getString("description"));
                                             foodItem.setMenuId(json.getJSONObject("submenus").getInt("menuid"));
-                                            String[] tag = {json.getString("title")};
-                                            foodItem.setTags(tag);
+                                            foodItem.setTitle(json.getString("title"));
                                             AppSharedData.FoodItems.add(foodItem);
-
+                                            food.insertRecordCart(foodItem,FoodItemsDatabase.Food_Table);
                                             if (pdialog.getDialog().isShowing()) {
                                                 pdialog.getDialog().dismiss();
                                             }
                                             setAdapter();
                                         }
-
+                                        food.close();
                                     }
 
                                 } catch (Exception ex) {

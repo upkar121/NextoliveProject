@@ -3,18 +3,13 @@ package com.example.nextoliveproject.models;
 public class CartItems {
 
     int menuId;
+    int userId;
     String name;
     int price;
     int quantity;
+    String date;
 
     public CartItems() {
-    }
-
-    public CartItems(int menuId, String name, int price, int quantity) {
-        this.menuId = menuId;
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
     }
 
     public int getMenuId() {
@@ -49,6 +44,19 @@ public class CartItems {
         this.quantity = quantity;
     }
 
+    public int getUserId() {
+        return userId;
+    }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

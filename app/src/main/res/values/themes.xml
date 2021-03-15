@@ -25,5 +25,11 @@
 
     <style name="Theme.NextoliveProject.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+    <style name="Dialog.Alert" parent="Base.Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
     <style name="Theme.NextoliveProject.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

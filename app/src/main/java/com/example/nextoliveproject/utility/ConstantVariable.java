@@ -12,5 +12,7 @@ public class ConstantVariable {
 
     public static String Locality = "LOCALITY";
 
+    public static String TotalAmount = "TOTAL_AMOUNT";
+
    // public static String Longitude = "LONGITUDE";
 }

@@ -29,4 +29,32 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+<!--    <style name="EditScreenTextInputLayoutStyle" parent="TextAppearance.AppCompat">-->
+<!--        <item name="colorControlNormal">@color/dark_blue_800</item>-->
+<!--        <item name="colorControlActivated">@color/dark_blue_700</item>-->
+<!--        <item name="colorControlHighlight">@color/dark_blue_800</item>-->
+<!--        <item name="colorAccent">@color/skyBlue</item>-->
+<!--        <item name="android:textColorHint">@color/black</item>-->
+<!--    </style>-->
+
+    <style name="HintText" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/dark_blue_800</item>
+    </style>
+
+    <style name="CounterOverFlow" parent="TextAppearance.Design.Counter.Overflow">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="CounterText" parent="TextAppearance.Design.Counter">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="ErrorText" parent="TextAppearance.Design.Error">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_warning</item>
+    </style>
+
 </resources>

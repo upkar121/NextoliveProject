@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,13 +22,29 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.nextoliveproject.Helper.LogoProgressDialog;
 import com.example.nextoliveproject.Helper.OtpEditText;
 import com.example.nextoliveproject.R;
+import com.example.nextoliveproject.network.Server_URL;
 import com.example.nextoliveproject.network.SmsListener;
 import com.example.nextoliveproject.network.SmsReceiver;
+import com.example.nextoliveproject.utility.Utility;
 import com.example.nextoliveproject.views.LocationActivity;
 import com.example.nextoliveproject.views.MapLocActivity;
+import com.example.nextoliveproject.views.Signup.SignupActivity;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -40,7 +57,7 @@ public class GetOTPActivity extends AppCompatActivity implements View.OnClickLis
     public TextView contact,resend_textview,timer_textview;
     public OtpEditText et_otp;
     Activity activity;
-
+    public static LogoProgressDialog pdialog;
     TimerTask task1;
     Timer timer1;
     long diffInSeconds = 20;
@@ -125,8 +142,7 @@ public class GetOTPActivity extends AppCompatActivity implements View.OnClickLis
             contact.setText(Html.fromHtml(text + "<font color=#f37328>" + getResources().getString(R.string.check_correct_mobile_number) + "</font>"));
             line_error.setVisibility(View.VISIBLE);
         }else{
-              startActivity(new Intent(GetOTPActivity.this, LocationActivity.class));
-              finish();
+            checkRegisteredUser(mobileNo);
         }
     }
 
@@ -135,7 +151,63 @@ public class GetOTPActivity extends AppCompatActivity implements View.OnClickLis
         finish();
         startActivity(intent);
     }
+    public void checkRegisteredUser(String number){
+        try {
+            if (Utility.isInternetAvailable(GetOTPActivity.this)){
+                try {
+                    pdialog = new LogoProgressDialog(GetOTPActivity.this);
+                    pdialog.setProgress("Please Wait...");
 
+                    Map<String, String> params = new HashMap();
+                    params.put("phone", number);
+
+                    JSONObject parameters = new JSONObject(params);
+                    RequestQueue requestQueue = Volley.newRequestQueue(GetOTPActivity.this);
+                    requestQueue.getCache().clear();
+                    JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Server_URL.already_register_user_URL, parameters, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                if(response.getString("message").equals("exists")){
+                                    startActivity(new Intent(GetOTPActivity.this, LocationActivity.class));
+                                    finish();
+                                }else{
+                                    startActivity(new Intent(GetOTPActivity.this, SignupActivity.class));
+                                    finish();
+                                }
+
+                            } catch (Exception ex) {
+                                Log.d("Response Error",""+ex);
+                            }finally {
+                                if (pdialog.getDialog().isShowing()) {
+                                    pdialog.getDialog().dismiss();
+                                }
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            if (pdialog.getDialog().isShowing()) {
+                                pdialog.getDialog().dismiss();
+                            }
+                            Log.d("Api Error 1",""+error);
+                        }
+                    });
+                    sr.setRetryPolicy(new DefaultRetryPolicy(3000, 20, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    requestQueue.add(sr);
+
+                } catch (Exception ex) {
+                    Log.d("Api Error 2",""+ex);
+                }
+            } else {
+                Toast.makeText(GetOTPActivity.this, "Internet Required", Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception ex) {
+            Log.d("Api Error",""+ex);
+        }
+    }
 
     private void showTimer() {
 

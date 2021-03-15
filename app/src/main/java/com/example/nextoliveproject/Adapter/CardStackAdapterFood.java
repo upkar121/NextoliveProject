@@ -17,12 +17,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.nextoliveproject.Helper.SharedData;
 import com.example.nextoliveproject.R;
+import com.example.nextoliveproject.database.Data.Cart;
+import com.example.nextoliveproject.database.FoodItemsDatabase;
 import com.example.nextoliveproject.models.CartItems;
 import com.example.nextoliveproject.models.FoodItem;
 import com.example.nextoliveproject.utility.AppSharedData;
+import com.example.nextoliveproject.utility.Utility;
 import com.example.nextoliveproject.views.Food_Detail_Activity;
 import com.example.nextoliveproject.views.ViewsCommentsActivity;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -41,7 +47,7 @@ public class CardStackAdapterFood extends RecyclerView.Adapter<CardStackAdapterF
     int position = 0;
     private LayoutInflater inflater;
     private ArrayList<CartItems> arrayCartItems = AppSharedData.ArrayCartItems;
-    CartItems cart = null;
+    Cart cartdatabase;
 
     public CardStackAdapterFood(Context context, ArrayList<FoodItem> data) {
         this.inflater = LayoutInflater.from(context);
@@ -65,17 +71,15 @@ public class CardStackAdapterFood extends RecyclerView.Adapter<CardStackAdapterF
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int pos) {
         position = pos;
-        int price;
-
+        cartdatabase = new Cart(context);
+        cartdatabase.openDatabase();
         FoodItem Item = data.get(position);
-        int menuId = Item.getMenuId();
 
         String foodName = Item.getName();
-         price = Item.getPrice();
 
         ViewHolder.foodName.setText(foodName);
         Picasso.with(context).load(Item.getImage()).error(R.drawable.food_one).into(ViewHolder.foodImage);
-        ViewHolder.price.setText("₹"+price);
+        ViewHolder.price.setText("₹"+Item.getPrice());
         ViewHolder.descriptions.setText(Item.getDescriptions());
         ViewHolder.hastag.setText("#"+Item.getAvailability());
 
@@ -83,78 +87,150 @@ public class CardStackAdapterFood extends RecyclerView.Adapter<CardStackAdapterF
         TextView add =  holder.itemView.findViewById(R.id.tvAdd);
         TextView subtract =  holder.itemView.findViewById(R.id.tvSub);
 
+        Food_Detail_Activity.number_item_added.setText(AppSharedData.ITEMCOUNT+" Items"+" | "+"₹"+AppSharedData.Total);
+
+        LinearProgressIndicator progressIndicator = holder.itemView.findViewById(R.id.progressShow);
+        progressIndicator.setIndicatorColor(context.getResources().getColor(R.color.skyBlue));
+        progressIndicator.show();
+           FoodItem item1 = data.get(holder.getAdapterPosition());
+
+           if(cartdatabase.getItemsCount(FoodItemsDatabase.Cart_Table)>0){
+               int quantity = cartdatabase.getQuantity(item1.getMenuId(),FoodItemsDatabase.Cart_Table);
+               if(quantity>0){
+                   qty.setText(""+quantity);
+                   holder.itemView.findViewById(R.id.tv_add_item).setVisibility(View.GONE);
+                   holder.itemView.findViewById(R.id.add_number).setVisibility(View.VISIBLE);
+                   AppSharedData.ITEMCOUNT = cartdatabase.totalQuantity(FoodItemsDatabase.Cart_Table);
+                   AppSharedData.Total = Float.parseFloat(SharedData.totalAmount(context));
+                   Food_Detail_Activity.number_item_added.setText(AppSharedData.ITEMCOUNT+" Items"+" | "+"₹"+AppSharedData.Total);
+                   Food_Detail_Activity.move_to_cart.setVisibility(View.VISIBLE);
+               }else{
+                   holder.itemView.findViewById(R.id.tv_add_item).setVisibility(View.VISIBLE);
+                   holder.itemView.findViewById(R.id.add_number).setVisibility(View.GONE);
+               }
+           }else{
+               holder.itemView.findViewById(R.id.tv_add_item).setVisibility(View.VISIBLE);
+               holder.itemView.findViewById(R.id.add_number).setVisibility(View.GONE);
+               Food_Detail_Activity.move_to_cart.setVisibility(View.GONE);
+           }
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int quantity = cart.getQuantity();
+                progressIndicator.show();
+
+                int quantity = cartdatabase.getQuantity(item1.getMenuId(),FoodItemsDatabase.Cart_Table);
+                float price = cartdatabase.getPrice(item1.getMenuId(),FoodItemsDatabase.Cart_Table);
                 quantity++;
+                AppSharedData.ITEMCOUNT = cartdatabase.totalQuantity(FoodItemsDatabase.Cart_Table);
+                AppSharedData.ITEMCOUNT++;
                 qty.setText(""+ quantity);
-                AppSharedData.Total= (float) quantity * Float.parseFloat(""+price);
-                Food_Detail_Activity.number_item_added.setText(quantity+" Items"+" | "+"₹"+AppSharedData.Total);
-                cart.setQuantity(quantity);
+                AppSharedData.Total = Float.parseFloat(SharedData.totalAmount(context));
+                AppSharedData.Total+= price;
+                SharedData.totalAmount(context,""+AppSharedData.Total);
+                Food_Detail_Activity.number_item_added.setText(AppSharedData.ITEMCOUNT+" Items"+" | "+"₹"+AppSharedData.Total);
+                SharedData.totalAmount(context,""+AppSharedData.Total);
+                CartItems cartItems = new CartItems();
+                cartItems.setMenuId(Item.getMenuId());
+                cartItems.setUserId(Item.getUserId());
+                cartItems.setName(Item.getName());
+                cartItems.setPrice(Item.getPrice());
+                cartItems.setQuantity(quantity);
+                long time = System.currentTimeMillis();
+                String currentDate = Utility.ParseMillisTotDate(time);
+                cartdatabase.updateRecord(""+item1.getMenuId(),cartItems,FoodItemsDatabase.Cart_Table,currentDate);
+
+                progressIndicator.hide();
+
             }
         });
 
         subtract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int quantity = cart.getQuantity();
+                progressIndicator.show();
+                int quantity = cartdatabase.getQuantity(item1.getMenuId(),FoodItemsDatabase.Cart_Table);
+                float price = cartdatabase.getPrice(item1.getMenuId(),FoodItemsDatabase.Cart_Table);
                 quantity--;
-                if(quantity == 0){
-                    Food_Detail_Activity.move_to_cart.setVisibility(View.GONE);
+                AppSharedData.ITEMCOUNT = cartdatabase.totalQuantity(FoodItemsDatabase.Cart_Table);
+                AppSharedData.ITEMCOUNT--;
+                if(quantity <= 0){
+                    cartdatabase.deleteRecord(item1.getMenuId(),FoodItemsDatabase.Cart_Table);
                     holder.itemView.findViewById(R.id.add_number).setVisibility(View.GONE);
                     holder.itemView.findViewById(R.id.tv_add_item).setVisibility(View.VISIBLE);
                 }else{
                     qty.setText(""+ quantity);
-                    AppSharedData.Total= (float)quantity * Float.parseFloat(""+price);
-                    Food_Detail_Activity.move_to_cart.setVisibility(View.VISIBLE);
-                    Food_Detail_Activity.number_item_added.setText(quantity+" Items"+" | "+AppSharedData.Total);
+                    CartItems cartItems = new CartItems();
+                    cartItems.setMenuId(Item.getMenuId());
+                    cartItems.setUserId(Item.getUserId());
+                    cartItems.setName(Item.getName());
+                    cartItems.setPrice(Item.getPrice());
+                    cartItems.setQuantity(quantity);
+                    long time = System.currentTimeMillis();
+                    String currentDate = Utility.ParseMillisTotDate(time);
+                    cartdatabase.updateRecord(""+item1.getMenuId(),cartItems,FoodItemsDatabase.Cart_Table,currentDate);
+                    if(quantity>1){
+                        subtract.setTextColor(context.getResources().getColor(R.color.green));
+                    }
                 }
 
-                cart.setQuantity(quantity);
+                if(AppSharedData.ITEMCOUNT <=0){
+                    SharedData.totalAmount(context,""+0);
+                    Food_Detail_Activity.move_to_cart.setVisibility(View.GONE);
+                }else {
+                    AppSharedData.Total = Float.parseFloat(SharedData.totalAmount(context));
+                    AppSharedData.Total-= price;
+                    SharedData.totalAmount(context,""+AppSharedData.Total);
+                    Food_Detail_Activity.number_item_added.setText(AppSharedData.ITEMCOUNT+" Items"+" | "+"₹"+AppSharedData.Total);
+                    SharedData.totalAmount(context,""+AppSharedData.Total);
+                }
+
+                progressIndicator.hide();
             }
         });
 
         holder.itemView.findViewById(R.id.tv_add_item).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!arrayCartItems.isEmpty()){
-                    for(int i =0;i<arrayCartItems.size();i++){
-                        if(arrayCartItems.get(i).getMenuId() == menuId){
-                            cart = arrayCartItems.get(i);
-                        }
-                    }
-                    if(cart == null){
-                        cart = new CartItems();
-                        cart.setMenuId(menuId);
-                        cart.setPrice(Item.getPrice());
-                        cart.setName(Item.getName());
-                        cart.setQuantity(0);
-                        AppSharedData.ArrayCartItems.add(cart);
-                    }
-                }else{
-                    cart = new CartItems();
-                    cart.setMenuId(menuId);
-                    cart.setPrice(Item.getPrice());
-                    cart.setName(Item.getName());
-                    cart.setQuantity(Integer.parseInt("0"));
-                    AppSharedData.ArrayCartItems.add(cart);
+                progressIndicator.show();
+                CartItems cartItems = new CartItems();
+                cartItems.setMenuId(Item.getMenuId());
+                cartItems.setUserId(Item.getUserId());
+                cartItems.setName(Item.getName());
+                cartItems.setPrice(Item.getPrice());
+                cartItems.setQuantity(1);
 
-                }
+                cartdatabase.insertRecordCart(cartItems, FoodItemsDatabase.Cart_Table);
+
                 holder.itemView.findViewById(R.id.add_number).setVisibility(View.VISIBLE);
                 holder.itemView.findViewById(R.id.tv_add_item).setVisibility(View.GONE);
-                Food_Detail_Activity.move_to_cart.setVisibility(View.VISIBLE);
+                AppSharedData.ITEMCOUNT = cartdatabase.totalQuantity(FoodItemsDatabase.Cart_Table);
 
+                if(AppSharedData.ITEMCOUNT >1){
+                    AppSharedData.Total += Item.getPrice();
+                    SharedData.totalAmount(context,""+AppSharedData.Total);
+                    Food_Detail_Activity.number_item_added.setText(AppSharedData.ITEMCOUNT+" Items"+" | "+"₹"+AppSharedData.Total);
+                }else{
+                    AppSharedData.Total = 0.0f ;
+                    SharedData.totalAmount(context,""+AppSharedData.Total);
+                    AppSharedData.Total += Item.getPrice();
+                    SharedData.totalAmount(context,""+AppSharedData.Total);
+                    Food_Detail_Activity.number_item_added.setText(AppSharedData.ITEMCOUNT+" Items"+" | "+"₹"+AppSharedData.Total);
+                }
+                Food_Detail_Activity.move_to_cart.setVisibility(View.VISIBLE);
+                progressIndicator.hide();
             }
         });
 
-        ViewHolder.expand_image.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.findViewById(R.id.expand_image1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ViewsCommentsActivity.class));
+                Intent i = new Intent(context, ViewsCommentsActivity.class);
+                i.putExtra(ViewsCommentsActivity.EXTRA_MENUID,item1.getMenuId());
+                context.startActivity(i);
             }
         });
-
+        progressIndicator.hide();
     }
 
 

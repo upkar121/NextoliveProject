@@ -22,8 +22,9 @@
         android:layout_below="@+id/main_back"
         android:background="@color/white">
         <ImageView
-            android:id="@+id/food_image"
+            android:id="@+id/rest_image"
             android:src="@drawable/food2"
+            android:scaleType="centerCrop"
             android:layout_width="50dp"
             android:layout_height="60dp"/>
         <LinearLayout

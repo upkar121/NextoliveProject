@@ -267,46 +267,8 @@ public class FoodDeliveryFragment extends Fragment {
         final SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(rvHighlight);
 
-//        rvHighlight.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//                int lastItem = layoutManager.findLastCompletelyVisibleItemPosition();
-//                if(lastItem == layoutManager.getItemCount()-1){
-//                    mHandler.removeCallbacks(SCROLLING_RUNNABLE);
-//                    Handler postHandler = new Handler();
-//                    postHandler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            rvHighlight.setAdapter(null);
-//                            rvHighlight.setAdapter(adapter);
-//                            mHandler.postDelayed(SCROLLING_RUNNABLE, 1000);
-//                        }
-//                    }, 1000);
-//                }
-//            }
-//        });
-//        mHandler.postDelayed(SCROLLING_RUNNABLE, 1000);
-
-
-
     }
-
-
-
-
-
     private void addSpotLightRv() {
-
-//        arrayListSpotLight.add("Mahalaxmy Sweets");
-//        arrayListSpotLight.add("Kwality walls Frozen Dessert ");
-//        arrayListSpotLight.add("The Bon Bon Bakers ");
-//        arrayListSpotLight.add("Mahalaxmy Sweets");
-//        arrayListSpotLight.add("Kwality walls Frozen Dessert ");
-//        arrayListSpotLight.add("The Bon Bon Bakers ");
-//        arrayListSpotLight.add("Mahalaxmy Sweets");
-//        arrayListSpotLight.add("Kwality walls Frozen Dessert ");
-//        arrayListSpotLight.add("The Bon Bon Bakers ");
 
 
         RecyclerView.Adapter adapter=new SpotlightAdapter(AppSharedData.Restaurant);
@@ -333,17 +295,6 @@ public class FoodDeliveryFragment extends Fragment {
     }
 
     private void addBestInSafetyRv() {
-
-//        arrayListSpotLight.add("Mahalaxmy Sweets");
-//        arrayListSpotLight.add("Kwality walls Frozen Dessert ");
-//        arrayListSpotLight.add("The Bon Bon Bakers ");
-//        arrayListSpotLight.add("Mahalaxmy Sweets");
-//        arrayListSpotLight.add("Kwality walls Frozen Dessert ");
-//        arrayListSpotLight.add("The Bon Bon Bakers ");
-//        arrayListSpotLight.add("Mahalaxmy Sweets");
-//        arrayListSpotLight.add("Kwality walls Frozen Dessert ");
-//        arrayListSpotLight.add("The Bon Bon Bakers ");
-
 
         RecyclerView.Adapter adapter=new SpotlightAdapter(AppSharedData.Restaurant);
         GridLayoutManager layoutManager= new GridLayoutManager(getActivity(),2,GridLayoutManager.HORIZONTAL,false);

@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class AppSharedData {
 
+    public static int ITEMCOUNT = 0;
     public static float Total = 0.0f;
 
     public static ArrayList<HashMap<String,String>> Restaurant = new ArrayList<>();

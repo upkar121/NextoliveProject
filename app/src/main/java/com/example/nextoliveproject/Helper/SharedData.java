@@ -70,4 +70,14 @@ public class SharedData {
         return getSP(context).getString(ConstantVariable.Locality, defvalue);
     }
 
+    public static void totalAmount(Context context, String value) {
+
+        putSP(context).putString(ConstantVariable.TotalAmount, value).commit();
+    }
+
+    public static String totalAmount(Context context) {
+
+        return getSP(context).getString(ConstantVariable.TotalAmount, defvalue);
+    }
+
 }

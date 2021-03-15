@@ -7,12 +7,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -21,11 +23,30 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.nextoliveproject.Helper.LogoProgressDialog;
+import com.example.nextoliveproject.Helper.SharedData;
 import com.example.nextoliveproject.MainActivity;
 import com.example.nextoliveproject.R;
+import com.example.nextoliveproject.network.Server_URL;
+import com.example.nextoliveproject.utility.AppSharedData;
+import com.example.nextoliveproject.utility.ConstantVariable;
+import com.example.nextoliveproject.utility.Utility;
 import com.example.nextoliveproject.views.SocialActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     public static String EXTRA_CONTACT_NUMBER = "CONTACT_NUMBER";
@@ -36,10 +57,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public EditText contact_number;
     public LinearLayout line_error,social_connect,nextPage;
     public View view;
+    public static LogoProgressDialog pdialog;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        context = this;
         findViewByIds();
         main_back.setOnClickListener(this);
         social_connect.setOnClickListener(this);
@@ -152,6 +176,64 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
              Intent i = new Intent(LoginActivity.this, GetOTPActivity.class);
              i.putExtra(this.EXTRA_CONTACT_NUMBER,country_code+" "+number);
              startActivity(i);
+        }
+    }
+
+    public void loginApi(String number){
+        try {
+            if (Utility.isInternetAvailable(context)){
+                try {
+                    pdialog = new LogoProgressDialog(context);
+                    pdialog.setProgress("Please Wait...");
+
+                    Map<String, String> params = new HashMap();
+                    params.put("zipcode", number);
+                    params.put("locality", "aliganjjj");
+
+                    JSONObject parameters = new JSONObject(params);
+                    RequestQueue requestQueue = Volley.newRequestQueue(context);
+                    requestQueue.getCache().clear();
+                    JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Server_URL.resturant_URL, parameters, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                if(response.getBoolean("success")){
+
+                                    JSONArray jsonArray = response.getJSONArray("data");
+
+
+                                }
+
+                            } catch (Exception ex) {
+                                Log.d("Response Error",""+ex);
+                            }finally {
+                                if (pdialog.getDialog().isShowing()) {
+                                    pdialog.getDialog().dismiss();
+                                }
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            if (pdialog.getDialog().isShowing()) {
+                                pdialog.getDialog().dismiss();
+                            }
+                            Log.d("Api Error 1",""+error);
+                        }
+                    });
+                    sr.setRetryPolicy(new DefaultRetryPolicy(3000, 20, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    requestQueue.add(sr);
+
+                } catch (Exception ex) {
+                    Log.d("Api Error 2",""+ex);
+                }
+            } else {
+                Toast.makeText(context, "Internet Required", Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception ex) {
+            Log.d("Api Error",""+ex);
         }
     }
 
