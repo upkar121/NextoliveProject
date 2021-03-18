@@ -170,7 +170,7 @@ public class GetOTPActivity extends AppCompatActivity implements View.OnClickLis
 
                             try {
                                 if(response.getString("message").equals("exists")){
-                                    startActivity(new Intent(GetOTPActivity.this, LocationActivity.class));
+                                    startActivity(new Intent(GetOTPActivity.this, AlreadyAccountActivity.class));
                                     finish();
                                 }else{
                                     startActivity(new Intent(GetOTPActivity.this, SignupActivity.class));

@@ -139,9 +139,33 @@
             android:layout_alignParentBottom="true"
             android:background="@color/white_smoke"/>
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/manually"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/view1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:textSize="17sp"
+            android:fontFamily="@font/allerta"
+            android:text="Add Location Manually"
+            android:textColor="@color/text_web_link" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/arrow_forward"/>
+    </LinearLayout>
   <ScrollView
-      android:layout_marginTop="60dp"
-      android:layout_below="@+id/view1"
+      android:layout_marginTop="10dp"
+      android:layout_below="@+id/manually"
      android:layout_width="match_parent"
      android:layout_height="match_parent">
       <RelativeLayout

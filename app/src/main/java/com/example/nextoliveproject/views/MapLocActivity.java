@@ -1,20 +1,15 @@
 package com.example.nextoliveproject.views;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 
 import android.Manifest;
 import android.animation.IntEvaluator;
 import android.animation.ValueAnimator;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -34,7 +29,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nextoliveproject.Helper.SharedData;
+import com.example.nextoliveproject.database.SaredPreference.SharedData;
 import com.example.nextoliveproject.R;
 import com.example.nextoliveproject.utility.Utility;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -56,8 +51,7 @@ import static com.example.nextoliveproject.views.login.LoginActivity.REQUEST_PER
 
 
 public class MapLocActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
-    public static String EXTRA_ADDRESS = "Address";
-    public static String EXTRA_AREA_ADDRESS = "Area_Address";
+
     SupportMapFragment mapFragment;
     private GoogleMap mMap;
     public TextView address_text,address_first;
@@ -126,8 +120,8 @@ public class MapLocActivity extends FragmentActivity implements OnMapReadyCallba
                 break;
             case R.id.btnConfirmLoc:
                 Intent mapResult = new Intent(MapLocActivity.this,MainViewActivity.class);
-                mapResult.putExtra(EXTRA_ADDRESS, address);
-                mapResult.putExtra(EXTRA_AREA_ADDRESS, area_address);
+                mapResult.putExtra(MainViewActivity.EXTRA_ADDRESS, address);
+                mapResult.putExtra(MainViewActivity.EXTRA_AREA_ADDRESS, area_address);
                 startActivity(mapResult);
                 finish();
                 break;

@@ -37,8 +37,10 @@
         android:theme="@style/Theme.NextoliveProject"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.ViewsCommentsActivity"
-            android:theme="@style/Dialog.Alert"></activity>
+        <activity android:name=".views.AddLocationActivity"></activity>
+        <activity
+            android:name=".views.ViewsCommentsActivity"
+            android:theme="@style/Dialog.Alert" />
         <activity android:name=".views.Food_Detail_Activity" />
         <activity android:name=".views.OfferActivity" />
         <activity android:name=".views.CartActivity" />

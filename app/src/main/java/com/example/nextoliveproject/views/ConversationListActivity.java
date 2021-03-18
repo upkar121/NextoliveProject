@@ -4,29 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.nextoliveproject.Helper.SharedData;
+import com.example.nextoliveproject.database.SaredPreference.SharedData;
 import com.example.nextoliveproject.MainActivity;
 import com.example.nextoliveproject.R;
 import com.example.nextoliveproject.database.ChatDatabase;
 import com.example.nextoliveproject.utility.Utility;
 import com.example.nextoliveproject.views.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;

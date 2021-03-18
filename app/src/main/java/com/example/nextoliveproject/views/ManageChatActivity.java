@@ -5,45 +5,27 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.nextoliveproject.Helper.RoundedImageView;
-import com.example.nextoliveproject.Helper.SharedData;
+import com.example.nextoliveproject.database.SaredPreference.SharedData;
 import com.example.nextoliveproject.MainActivity;
 import com.example.nextoliveproject.R;
 import com.example.nextoliveproject.database.ChatDatabase;
 import com.example.nextoliveproject.utility.Utility;
-import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 public class ManageChatActivity extends AppCompatActivity implements View.OnClickListener {

@@ -19,6 +19,8 @@ import com.example.nextoliveproject.views.fragments.ResturantFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainViewActivity extends ManageSideNavigation implements View.OnClickListener {
+    public static String EXTRA_ADDRESS = "Address";
+    public static String EXTRA_AREA_ADDRESS = "Area_Address";
     BottomNavigationView topavigation;
     ImageView sidenav;
     TextView locality,address;
@@ -32,8 +34,8 @@ public class MainViewActivity extends ManageSideNavigation implements View.OnCli
         locationLayout.setOnClickListener(this);
         offerLayout.setOnClickListener(this);
         setListners();
-        locality.setText(getIntent().getStringExtra(MapLocActivity.EXTRA_AREA_ADDRESS));
-        address.setText(getIntent().getStringExtra(MapLocActivity.EXTRA_ADDRESS));
+        locality.setText(getIntent().getStringExtra(EXTRA_AREA_ADDRESS));
+        address.setText(getIntent().getStringExtra(EXTRA_ADDRESS));
     }
 
     @Override

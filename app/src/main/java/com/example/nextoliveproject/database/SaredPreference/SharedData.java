@@ -1,4 +1,4 @@
-package com.example.nextoliveproject.Helper;
+package com.example.nextoliveproject.database.SaredPreference;
 
 import android.app.Activity;
 import android.content.Context;

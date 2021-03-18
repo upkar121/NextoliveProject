@@ -1,6 +1,5 @@
 package com.example.nextoliveproject.views;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -8,15 +7,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -31,16 +26,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nextoliveproject.Helper.LogoProgressDialog;
-import com.example.nextoliveproject.Helper.SharedData;
+import com.example.nextoliveproject.database.SaredPreference.SharedData;
 import com.example.nextoliveproject.R;
-import com.example.nextoliveproject.database.Data.Cart;
 import com.example.nextoliveproject.database.Data.Food;
 import com.example.nextoliveproject.database.FoodItemsDatabase;
-import com.example.nextoliveproject.models.CartItems;
 import com.example.nextoliveproject.models.FoodItem;
 import com.example.nextoliveproject.network.Server_URL;
 import com.example.nextoliveproject.utility.AppSharedData;
-import com.example.nextoliveproject.utility.ConstantVariable;
 import com.example.nextoliveproject.utility.Utility;
 import com.example.nextoliveproject.views.fragments.food_card_show_fragment;
 import com.example.nextoliveproject.views.fragments.popular_fragment;
@@ -51,7 +43,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class Food_Detail_Activity extends AppCompatActivity implements View.OnClickListener {
 

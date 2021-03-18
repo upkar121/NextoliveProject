@@ -29,13 +29,11 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-<!--    <style name="EditScreenTextInputLayoutStyle" parent="TextAppearance.AppCompat">-->
-<!--        <item name="colorControlNormal">@color/dark_blue_800</item>-->
-<!--        <item name="colorControlActivated">@color/dark_blue_700</item>-->
-<!--        <item name="colorControlHighlight">@color/dark_blue_800</item>-->
-<!--        <item name="colorAccent">@color/skyBlue</item>-->
-<!--        <item name="android:textColorHint">@color/black</item>-->
-<!--    </style>-->
+    <style name="EditScreenTextInputLayoutStyle" parent="TextAppearance.AppCompat">
+        <item name="colorControlNormal">@color/dark_blue_800</item>
+        <item name="colorControlActivated">@color/dark_blue_700</item>
+        <item name="colorControlHighlight">@color/dark_blue_800</item>
+    </style>
 
     <style name="HintText" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">12sp</item>

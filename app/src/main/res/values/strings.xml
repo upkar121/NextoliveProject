@@ -5,8 +5,7 @@
 
     <string name="facebook_app_id">[APP_ID]</string>
     <string name="fb_login_protocol_scheme">fb[APP_ID]</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBxHbO1QEeBQGERLKtbDcVSaE-LgRmCfeE</string>
-    <string name="google_places_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBxHbO1QEeBQGERLKtbDcVSaE-LgRmCfeE</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDX_GgqysC9HUGHNbg5M1zBuhMsYtTVY-k</string>
 
     <string name="please_wait">Please wait…</string>
     <string name="network_error">Network Error</string>

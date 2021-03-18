@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class LocationActivity extends AppCompatActivity implements View.OnClickL
     public ImageView main_back;
     public RelativeLayout relative_turned_off, relative_turned_on;
     public Button turn_on_button;
+    private LinearLayout manually;
 
     @Override
     protected void onStart() {
@@ -57,6 +59,7 @@ public class LocationActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_location);
         findViewByIds();
 
+        manually.setOnClickListener(this);
         main_back.setOnClickListener(this);
         relative_turned_off.setOnClickListener(this);
         relative_turned_on.setOnClickListener(this);
@@ -69,6 +72,7 @@ public class LocationActivity extends AppCompatActivity implements View.OnClickL
         relative_turned_on = findViewById(R.id.relative_turned_on);
         relative_turned_off = findViewById(R.id.relative_turned_off);
         turn_on_button = findViewById(R.id.turn_on_button);
+        manually = findViewById(R.id.manually);
     }
 
     @Override
@@ -82,6 +86,9 @@ public class LocationActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.relative_turned_on:
                 startActivity(new Intent(LocationActivity.this,MapLocActivity.class));
+                break;
+            case R.id.manually:
+                startActivity(new Intent(LocationActivity.this,AddLocationActivity.class));
                 break;
         }
     }
